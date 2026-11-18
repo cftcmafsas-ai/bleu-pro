@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Ma Gestion</title>
+<style>
+:root{--bg:#f7fafc;--bg2:#eaf3fa;--card:#fff;--tx:#46535e;--mu:#7a8c9a;--ac:#b9d6ee;--ac2:#d6e8f6;--bd:#dde8f0;--dk:#3a4955;--sh:0 2px 10px rgba(58,73,85,.06);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:none){:root:not([data-theme="light"]){--bg:#0d1f27;--bg2:#0a1820;--card:#15303b;--tx:#eaf6f8;--mu:#8fb0bd;--ac:#4cb4e6;--ac2:#3fd0c9;--bd:#23424f;--sh:none}}
+:root[data-theme="dark"]{--bg:#0d1f27;--bg2:#0a1820;--card:#15303b;--tx:#eaf6f8;--mu:#8fb0bd;--ac:#4cb4e6;--ac2:#3fd0c9;--bd:#23424f;--sh:none}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--bg2),var(--bg) 320px);background-attachment:fixed;color:var(--tx);font:16px/1.45 -apple-system,system-ui,"Segoe UI",sans-serif;padding:16px;max-width:680px;margin:auto}
+h1{font:600 24px Georgia,"Times New Roman",serif;margin:0}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:14px}.top h1{flex:1}
+.logo{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--ac2),var(--ac));color:#fff;display:grid;place-items:center;font:600 22px Georgia,serif;box-shadow:var(--sh)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:var(--ac);color:var(--dk);border:0;border-radius:999px;padding:10px 18px;font-weight:600}
+button.g{background:var(--card);color:var(--tx);border:1px solid var(--bd)}button.d{background:#dc2626}
+input,textarea,select{width:100%;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;margin:4px 0 10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{background:var(--card);border-radius:20px;padding:16px 14px;box-shadow:var(--sh);border:1px solid var(--bd)}
+.tile b{display:block;font-size:28px;font-weight:400}.tile span{font-weight:600}.tile small{display:block;color:var(--mu);font-size:12px;margin-top:2px;line-height:1.3}
+.it{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:12px 14px;margin:10px 0;box-shadow:var(--sh);display:flex;gap:12px;align-items:center}
+.it small{color:var(--mu);display:block}.it>div{min-width:0}
+.av{flex:none;width:46px;height:46px;border-radius:50%;background:var(--ac2);color:var(--dk);display:grid;place-items:center;font-weight:600;background-size:cover;background-position:center}
+.big{width:110px;height:110px;font-size:40px;margin:0 auto 10px}
+a.b{display:inline-block;color:var(--dk);background:var(--bg2);border:1px solid var(--bd);border-radius:999px;padding:7px 13px;margin:4px 6px 0 0;font-size:14px;text-decoration:none}
+.tot{background:var(--card);border-radius:18px;padding:12px 14px;margin:10px 0;font-size:14px;box-shadow:var(--sh);border:1px solid var(--bd)}
+.desc{color:var(--mu);font-size:14px;margin:-6px 0 12px}
+button.tile{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:20px;padding:16px 14px;text-align:left;font-weight:400;width:100%}[onclick]{cursor:pointer;-webkit-tap-highlight-color:transparent}
+@media print{.no{display:none}body{background:#fff}}label{font-size:13px;color:var(--mu)}.fv{margin:0 0 10px}.fv small{color:var(--mu);display:block}
+button:not(.g):not(.tile):not(.d),.av,.logo{color:var(--dk)}.logo{width:auto;height:46px;aspect-ratio:110/88;border-radius:8px;box-shadow:none;background:transparent url(data:image/webp;base64,UklGRkYHAABXRUJQVlA4IDoHAAAwHgCdASpuAFgAPnk0lkckoyIhLPh6kJAPCWwAzXgm/M+b5Z/8ZwAlG+Wi/Z/nfUv4rHSF8wH7E+sV6RP816gH9J/1XWcehR5cHsofuP+5XtS6r0xT/HdJD7ik6Uub+u1zvdGX+JDSNTOvHj9Uewb+uXWqZDdlvl93W9fP+XDgIrSpgOaqShJvgO8mIYaCzmgtAT1I0pu35d8sQrEcSKeeMeRgEn4niHrRqnEPHNtD+iZy5UMxgobrn/NrWVWg8SIWBSScKIRx3X7rej9NfOEgBGT+Qvh3BMbfwE7nIKxHHbmSMmR04W2l5tw4CGR9oScNQfZihki2wANAAP79unhp83cnG23vx+oEY6OXjoxpxz/KheDvuiNu2GQU+ouG837iKveO7+69p0fQ7x0fV9O+EqeJ78F6cQeRjKOa5oB0e7oxboKBcdnoc1opcH+Aot58XV7w4KGY/qeCj5RHKc/yiaEyfN9XJvG4dW85N3kphcQprT07KScOiGLhAT0SqnjjdCtkWqmEhS8f14IU0Fwuu78hCvzawSw2K8HlCVb1M3BcAett0zpY3m+pxduPaHAl78x1TZhKM/vkZsw0oZSYcEToq9RUxw/++jAc9quY8/7z1tjypt+vOKZ8LSWImeh+vugx505sjFygAoGRiKvEcOOsDVy5uzEH6SfLJ15o9jwcwG/c+6iXVnT3FjYcRLkS9plnCmHXmbLvkE6le9LxuhMa+QgVE5Kq9m5HKLqLouva/LIJnmZVrHJhlwC4T80dIv/yy5RCe4eKL4fQq+s8JInUQkp5jt3miCueLZyVs2+NjoaxLQw1YDZhEp9XoSnTXjBC5S5u6+d+W70a83RPSXG7bPpGr0H3mAOOL0pJhU8kbHtBAbSFvs1N53TXsmZ2If2Wn+gDyvv3fnpwjwGk+7pjtRRkCLhpHe/GhnYAIG4r283rtnx1LdIrrXRWefH4FjWL+ugbaKByQEw+JOpGLjnggL3aUQ9QxWh7ZKLsS3eaU2BjhNGXBbi9UTiMehsX2YesQ8Em0GXua+0suYwI8Avytv33Lua6w0dLU2jNzzI8bBhCxyucn7oXZnAPMnxg+ANHfe2oMXYwpZVAhS6AeMOTYvbEqILhP/YdFeWeYG4rpnmLcP3ev2h35ecqHZZprO4gAXf9/7iOmv+gQ2zPl1VFiAGrUUDMi5opk+wcjPCtmL0f6TkGAEyNlKc5Ww//2uP8Yxgl3ham2G2wvNvBFETHuYygaKwYz9mBm0ykXaiDUmKq3WP3uPZJMVjAQ65JVPXF0OEF2iAHbPzGuPwVZ4FTiZzWwr7/kHslbfaB5YoKWn8MJVPJS2ZFCVG4+qSUKlbx1/+4hB/skrvofwBEtykzqm1fmu4SCxdjkqqP5uY/bmk0euu4c/3TXu98ZuNHl8kVXOX+nkvTvJ1Wx/SPsCOfmoUyuDfJWjvCuwQ9ys0RXexvg7I8IKXCPN4d3MzB7LL2aRHU1lYVlMUkps+f/HaXj/InFifv5AngGPB7bHxlKMHqBNIn6+L866ImVbrBEy2jN8FdE0EJmbD1lVwnKR9F9dn34w6HmGfUL5aQwmu2BEMeGCpkCq0ZueyfLz5TADVhVroe/PF8L2+qZKYmgi39cqQltRxLu4gvs+c8m2HfobyLZHwhK3HFEcPTVMTMkmIfEeeQwodbRfa0u5N9JucCHSkM5IPJsNb1dYP1Hurtr9xVGU/ZeVB283Gn/8O7Km/Zzu5VfNv4KbIJ43My87wlnMl3Dwk9pXLCmrqr/inBIqaLb85bWj/C5Oct4s96anKftcoZFpGES+U1WC5se5IHWsHEANjVnv3IBkqV8JexSsLVptGBG6iQ7LZy7LbzQFM1MUqCO64W+WK4P21t62mPgz7hflx/1jpZRY4zPzVy1T5BqOXO6YaN50xw9JZH2U3qptH72ccPVwmvk1IRPv/khVT/lzhDFMK3HCcTSrKWHedfXwW2r1P+TQO8vPpcQLd1guoMVa/6nMxVqTfbyf4uLslSZJstLtaUwnTZCEu5YHj2i7fbj5O8avn/c4+e0lvP8TcLmldyXfxy8/MxQUjWa+ckHsgkoRxxDTyhK3pjJc83gWSNOrmCFDU+jStQsgSmn0cLyEnYMEHmcKBQvFie8iNdfnAGhNiUNEtyCQ5/FbUc8jXZLeO0TMa5mt1s2CKWyYesxvXUj1UoAZkXvg3RwJl1DOgYLij4cCpU3kD64+Puk1rnPmcVCWYpTDkPgKv7XnNEreXFtS9y4EL72xv4yR18GIrdOiaws6YWCFc5Ujunp2s8LGgKO0dUfPd+UVq1n6/WMV8PAz3U/pQXPCAkWrA20ao0/IrNofIaSfin5plMlLmKXApAq4P5TZ3P5b53Oh0e8qeC0WZTawZzqD0g9usKcoEf853nALZui+Qvo0OdrN6z8tMK4vU5LzYoXvecwr4awESnRiK1MZX6/YdrdMl4Dh5AAA==) center/contain no-repeat;color:transparent;font-size:0;border:0}</style><script id="wix-site-script" src="https://manage.wix.com/_api/headless-business-setup/v1/headless-business/site-script.js" data-client-id="4ffa1cd0-90a6-4622-86bb-e3a6f6ae0162" async></script></head><body><div id="app"></div>
+<script>
+const S=(k,v)=>{try{if(v===undefined){return JSON.parse(localStorage.getItem(k))}localStorage.setItem(k,JSON.stringify(v));if(k.slice(0,2)==="d:")push(k.slice(2))}catch(e){return null}};
+const D="date",N="number",P="img";
+const LG=[["Français","fr"],["Anglais","en"],["Espagnol","es"],["Allemand","de"],["Italien","it"],["Portugais","pt"],["Arabe","ar"],["Chinois","zh-CN"],["Russe","ru"],["Néerlandais","nl"],["Turc","tr"]],LGN=LG.map(x=>x[0]);
+const RAP=["Aucun","À l’heure","15 minutes avant","1 heure avant","1 jour avant"],DUR=["30 min","1 h","1 h 30","2 h"],PAY=["Carte","Espèces","Virement","Chèque","Autre"];
+const CB=[["photo","Photo",P],["prenom","Prénom"],["nom","Nom"],["societe","Société"],["poste","Poste / fonction"],["h","Téléphones","h"],["tel","Mobile","tel"],["wa","WhatsApp","tel"],["fixe","Fixe","tel"],["telpro","Téléphone pro","tel"],["h","E-mails","h"],["mail","E-mail perso","email"],["mailpro","E-mail pro","email"],["h","Adresses","h"],["adresse","Adresse personnelle","addr"],["adrpro","Adresse professionnelle","addr"],["h","Réseaux sociaux","h"],["fb","Facebook","soc","https://facebook.com/"],["ig","Instagram","soc","https://instagram.com/"],["li","LinkedIn","soc","https://linkedin.com/in/"],["xx","X (Twitter)","soc","https://x.com/"],["tk","TikTok","soc","https://tiktok.com/@"],["sc","Snapchat","soc","https://snapchat.com/add/"],["yt","YouTube","soc","https://youtube.com/@"],["tg","Telegram","soc","https://t.me/"],["site","Site web","url"],["h","Autres","h"],["anniv","Anniversaire",D],["langue","Langue du client","sel",LGN],["note","Notes"]];
+const M=[
+{id:"prospection",n:"Prospection",i:"🎯",d:"Prospects, étape, relance et fiche complète comme un contact",sort:"nom",f:[CB[0],CB[1],CB[2],CB[3],CB[4],["type","Type","sel",["Client potentiel","Employé à recruter","Partenaire","Fournisseur"]],["etape","Étape","sel",["Nouveau","Contacté","RDV pris","Devis envoyé","Gagné","Perdu"]],["source","Source","sel",["Recommandation","Site internet","Réseaux sociaux","Salon","Appel entrant","Autre"]],["relance","Prochaine relance",D],["budget","Budget estimé (€)",N],...CB.slice(5)]},
+{id:"contacts",n:"Contacts",i:"👤",d:"Fiches complètes : téléphones, WhatsApp, adresses, réseaux sociaux",sort:"nom",f:CB},
+{id:"comptes",n:"Comptes",i:"🏢",d:"Sociétés et organisations : coordonnées et contact principal",sort:"nom",f:[["nom","Société"],["type","Type","sel",["Client","Fournisseur","Partenaire","Autre"]],["secteur","Secteur d’activité"],["siret","SIRET / N° d’entreprise"],["contact","Contact principal","ctc"],["effectif","Effectif"],["h","Coordonnées","h"],["tel","Téléphone","tel"],["mail","E-mail","email"],["site","Site web","url"],["adresse","Adresse du siège","addr"],["adrpro","Adresse de facturation","addr"],["h","Réseaux sociaux","h"],["fb","Facebook","soc","https://facebook.com/"],["ig","Instagram","soc","https://instagram.com/"],["li","LinkedIn","soc","https://linkedin.com/company/"],["note","Notes"]]},
+{id:"affaires",n:"Affaires",i:"💼",d:"Opportunités : étape, probabilité, montant et dates",f:[["nom","Affaire"],["client","Client","ctc"],["statut","Étape","sel",["Prospect","Qualification","Proposition","Négociation","Gagnée","Perdue"]],["proba","Probabilité de réussite","pct"],["montant","Montant (€)",N],["date","Date d’ouverture",D],["cloture","Clôture prévue",D],["source","Source","sel",["Recommandation","Site internet","Réseaux sociaux","Salon","Autre"]],["note","Détails"]]},
+{id:"taches",n:"Tâches",i:"✅",d:"Début, fin, rappel et avancement, reliés à un contact",cal:1,sort:"date",f:[["nom","Tâche"],["contact","Contact lié","ctc"],["debut","Début",D],["date","Fin / échéance",D],["heure","Heure","tm"],["rappel","Rappel","sel",RAP],["statut","Statut","sel",["À faire","En cours","Terminée"]],["prio","Priorité","sel",["Basse","Normale","Haute"]],["avance","Avancement","pct"],["note","Détails"]]},
+{id:"reunions",n:"Réunions",i:"📅",d:"Rendez-vous avec invitations par WhatsApp, SMS ou e-mail",cal:1,inv:1,sort:"date",f:[["nom","Sujet"],["date","Date",D],["heure","Heure","tm"],["duree","Durée","sel",DUR],["lieu","Lieu","addr"],["inv1","Invité 1","ctc"],["inv2","Invité 2","ctc"],["inv3","Invité 3","ctc"],["autres","Autres invités"],["note","Ordre du jour"]]},
+{id:"appels",n:"Appels",i:"📞",d:"Journal des appels clients et résumé de la conversation",f:[["nom","Client","ctc"],["sens","Sens","sel",["Entrant","Sortant","Manqué"]],["tel","Numéro","tel"],["date","Date",D],["heure","Heure","tm"],["duree","Durée (min)",N],["note","Résumé de la conversation","area"],["suivi","Rappeler le",D]]},
+{id:"rapports",n:"Rapports",i:"📊",d:"Compte rendu détaillé de la journée avec les clients",f:[["nom","Titre"],["type","Type","sel",["Journée","Visite client","Réunion","Hebdomadaire","Mensuel"]],["date","Date",D],["clients","Clients rencontrés"],["km","Kilomètres parcourus",N],["frais","Frais de la journée (€)",N],["note","Résumé de la journée","area"],["res","Résultats obtenus","area"],["next","Prochaines actions","area"]]},
+{id:"calendrier",n:"Calendrier",i:"🗓️",d:"Événements comme sur Apple : début, fin, lieu, rappel, répétition",cal:1,sort:"debut",f:[["nom","Événement"],["cal","Calendrier","sel",["Personnel","Travail","Clients","Famille"]],["debut","Début",D],["date","Fin",D],["heure","Heure","tm"],["duree","Durée","sel",DUR],["lieu","Lieu","addr"],["contact","Contact lié","ctc"],["rappel","Rappel","sel",RAP],["repet","Répétition","sel",["Jamais","Chaque jour","Chaque semaine","Chaque mois","Chaque année"]],["note","Notes"]]},
+{id:"documents",n:"Mes documents",i:"📁",d:"Documents classés par catégorie et par client",f:[["nom","Titre"],["cat","Catégorie","sel",["Contrat","Facture","Devis","Identité","Plan","Photo","Autre"]],["client","Client lié","ctc"],["date","Date",D],["lien","Lien du document","url"],["note","Notes"]]},
+{id:"traduction",n:"Traduction",i:"🌍",d:"Préparer un message dans la langue du client",tr:1,f:[["nom","Message à traduire","area"],["langue","Langue cible","sel",LGN]]},
+{id:"ventes",n:"Vente / achat",i:"🛒",d:"Ventes et achats : produits, services, quantités, montants",f:[["nom","Produit ou service"],["type","Vente ou achat","sel",["Vente","Achat"]],["cat","Catégorie","sel",["Produit","Service","Abonnement","Prestation","Autre"]],["client","Client / fournisseur","ctc"],["date","Date",D],["qte","Quantité",N],["pu","Prix unitaire (€)",N],["montant","Total (€)",N],["statut","Statut","sel",["En attente","Payé","Livré"]],["note","Notes"]]},
+{id:"protection",n:"Protection",i:"🔒",d:"Informations confidentielles à part",f:[["nom","Information"],["note","Détail"]]},
+{id:"localisation",n:"Localisation",i:"📍",d:"Lieux enregistrés : plan et itinéraire en un toucher",f:[["nom","Lieu"],["type","Type","sel",["Client","Bureau","Domicile","Hôtel","Autre"]],["adresse","Adresse","addr"],["contact","Contact","ctc"],["note","Notes"]]},
+{id:"biens",n:"Retrouver un bien",i:"🏠",d:"Biens avec plan Google Maps, Waze et cadastre",f:[["nom","Bien"],["type","Type de bien","sel",["Maison","Appartement","Terrain","Local professionnel","Immeuble"]],["statut","Statut","sel",["À vendre","À louer","Vendu","Loué","Estimation"]],["adresse","Adresse","addr"],["cp","Code postal"],["ville","Ville"],["surface","Surface (m²)",N],["pieces","Pièces",N],["prix","Prix (€)",N],["parcelle","Référence cadastrale"],["proprio","Propriétaire","ctc"],["note","Notes"]]},
+{id:"frais",n:"Frais",i:"🧾",d:"Notes de frais : dates de note, d’envoi, de remboursement",mois:1,f:[["nom","Description"],["type","Type de frais","sel",["Transport","Carburant","Péage","Parking","Hôtel","Repas","Téléphone","Matériel","Formation","Autre"]],["date","Date de la note de frais",D],["envoi","Date d’envoi",D],["rembt","Date de remboursement",D],["montant","Montant (€)",N],["statut","Statut","sel",["À envoyer","Envoyée","Remboursée","Refusée"]],["client","Client / projet","ctc"],["paiement","Moyen de paiement","sel",PAY],["note","Notes"]]},
+{id:"tableaux",n:"Tableaux",i:"🧮",d:"Lignes libres à deux colonnes",f:[["nom","Ligne"],["a","Colonne A"],["b","Colonne B"]]},
+{id:"mails",n:"Mails",i:"✉️",d:"Préparer et envoyer un e-mail",mail:1,f:[["nom","Destinataire","email"],["objet","Objet"],["note","Message","area"]]},
+{id:"factures",n:"Factures",i:"💶",d:"Factures clients, échéance, statut et PDF",doc:"Facture",f:[["nom","N° facture"],["client","Client","ctc"],["date","Date",D],["echeance","Échéance",D],["montant","Montant HT (€)",N],["statut","Statut","sel",["Brouillon","Envoyée","Payée","En retard"]],["mode","Mode de paiement","sel",["Virement","Carte","Chèque","Espèces"]],["note","Notes"]]},
+{id:"depenses",n:"Dépenses",i:"💸",d:"Dépenses de l’entreprise ou personnelles, par mois",mois:1,f:[["nom","Dépense"],["cat","Catégorie","sel",["Entreprise","Personnelle","Loyer","Assurance","Fournitures","Logiciels","Impôts et taxes","Autre"]],["date","Date",D],["montant","Montant (€)",N],["paiement","Moyen de paiement","sel",PAY],["lien","Justificatif (lien)","url"]]},
+{id:"devis",n:"Devis",i:"📝",d:"Devis envoyés, statut et PDF",doc:"Devis",f:[["nom","N° devis"],["client","Client","ctc"],["date","Date",D],["montant","Montant HT (€)",N],["statut","Statut","sel",["Brouillon","Envoyé","Accepté","Refusé"]],["note","Notes"]]},
+{id:"tickets",n:"Tickets de vente",i:"🎫",d:"Tickets de caisse et ventes",f:[["nom","Ticket"],["client","Client","ctc"],["date","Date",D],["montant","Montant (€)",N],["mode","Moyen de paiement","sel",PAY]]},
+{id:"paiements",n:"Paiements reçus",i:"✔️",d:"Encaissements et leur total",f:[["nom","De la part de","ctc"],["date","Date",D],["montant","Montant (€)",N],["mode","Mode","sel",["Virement","Carte","Chèque","Espèces"]],["facture","Facture liée"]]},
+{id:"temps",n:"Feuilles de temps",i:"⏱️",d:"Heures travaillées par projet et par client",f:[["nom","Projet"],["client","Client","ctc"],["date","Date",D],["heures","Heures",N],["fact","Facturable","sel",["Oui","Non"]],["note","Notes"]]},
+{id:"salaires",n:"Bulletins de salaire",i:"🧑‍💼",d:"Brut, cotisations et net calculés",paie:1,f:[["nom","Employé"],["date","Mois",D],["brut","Brut (€)",N],["cotis","Cotisations (%)",N]]}
+];
+let view="home",q="",cur=null,hid=S("hid")||[],pend=null;
+const app=document.getElementById("app"),$=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const eur=n=>(Math.round(n*100)/100).toLocaleString("fr-FR")+" €";
+const gm=id=>M.find(x=>x.id===id),title=m=>m.f.find(x=>x[0]==="nom")[0];
+const av=(r,c="")=>`<div class="av ${c}" ${r.photo?`style="background-image:url(${r.photo})"`:""}>${r.photo?"":esc(((r.prenom||r.nom||"?")[0]||"?").toUpperCase())}</div>`;
+function home(){
+ app.innerHTML=`<div class="top"><div class="logo">G</div><h1>Ma Gestion</h1><button class="g" onclick="view='set';render()">Personnaliser</button></div>${dash()}<div class="grid">`+
+ M.filter(m=>!hid.includes(m.id)).map(m=>`<button class="tile" onclick="go('${m.id}')"><b>${m.i}</b><span>${m.n}</span><small>${m.d}</small></button>`).join("")+`</div>`;
+}
+function setp(){
+ app.innerHTML=`<div class="top"><button class="g" onclick="go('home')">‹</button><h1>Contenu de l’accueil</h1></div><p class="desc">Cochez ce que vous voulez voir.</p>`+
+ M.map(m=>`<label class="it" style="color:var(--tx);font-size:16px"><input type="checkbox" style="width:auto;margin:0" ${hid.includes(m.id)?"":"checked"} onchange="tog('${m.id}')">${m.i} ${m.n}</label>`).join("")+`<h1 style="font-size:18px;margin:18px 0 8px">Sécurité et sauvegarde</h1><div class="it" style="display:block"><button onclick="setPin()">Définir un code</button> <button onclick="faceReg()">Activer Face ID</button> <button class="g" onclick="setPin(1)">Retirer</button><small>Verrouille l’ouverture de l’application.</small></div><div class="it" style="display:block"><button onclick="expo()">Copier la sauvegarde</button> <button class="g" onclick="impo()">Importer</button><small>Collez la sauvegarde dans Notes pour la garder, ou sur un autre appareil.</small></div>`;
+}
+function tog(id){hid=hid.includes(id)?hid.filter(x=>x!==id):[...hid,id];S("hid",hid)}
+function go(v){view=v;q="";render()}
+const dn=(m,r)=>m.f.some(x=>x[0]==="prenom")?((r.prenom||"")+" "+(r.nom||"")).trim():(r[title(m)]||"");
+const PEO=["contacts","prospection","comptes"];
+const people=()=>{const a=[];PEO.forEach(id=>(S("d:"+id)||[]).forEach(r=>a.push({r,m:gm(id)})));return a};
+const findc=n=>{n=(n||"").trim().toLowerCase();if(!n)return null;const x=people().find(p=>dn(p.m,p.r).toLowerCase()===n);return x?x.r:null};
+const waNum=s=>{s=String(s||"").replace(/[^\d+]/g,"");if(s[0]==="+")return s.slice(1);if(s.slice(0,2)==="00")return s.slice(2);return s[0]==="0"?"33"+s.slice(1):s};
+function cbtn(c,msg,subj){let a="";if(!c)return a;const t=c.tel||c.fixe||"",w=waNum(c.wa||c.tel);
+ if(t)a+=`<a class="b" href="tel:${esc(t)}">📞 ${esc(c.prenom||c.nom||"Appeler")}</a>`;
+ if(w)a+=`<a class="b" href="https://wa.me/${w}${msg?"?text="+encodeURIComponent(msg):""}">WhatsApp</a>`;
+ if(t&&msg)a+=`<a class="b" href="sms:${esc(t)}&body=${encodeURIComponent(msg)}">SMS</a>`;
+ const e=c.mail||c.mailpro;if(e)a+=`<a class="b" href="mailto:${esc(e)}${msg?"?subject="+encodeURIComponent(subj||"")+"&body="+encodeURIComponent(msg):""}">✉️ E-mail</a>`;return a}
+function gcal(m,r){const d=r.debut||r.date;if(!d)return "";const p=s=>s.replace(/-/g,"");let st,en;
+ if(r.heure){st=p(d)+"T"+r.heure.replace(":","")+"00";const [H,Mi]=r.heure.split(":").map(Number),t=new Date(2000,0,1,H,Mi+({"30 min":30,"1 h":60,"1 h 30":90,"2 h":120}[r.duree]||60));en=p(r.date||d)+"T"+String(t.getHours()).padStart(2,"0")+String(t.getMinutes()).padStart(2,"0")+"00"}
+ else{st=p(d);const e=new Date(r.date||d);e.setDate(e.getDate()+1);en=e.toISOString().slice(0,10).replace(/-/g,"")}
+ return `<a class="b" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(dn(m,r))}&dates=${st}/${en}&location=${encodeURIComponent(r.lieu||"")}&details=${encodeURIComponent(r.note||"")}">📅 Agenda</a>`}
+function links(m,r){let a="";
+ m.f.forEach(([k,l,t,x])=>{const v=r[k];if(!v)return;const ev=encodeURIComponent(v);
+  if(t==="tel")a+=`<a class="b" href="tel:${esc(v)}">📞 ${esc(l)}</a>`+((k==="tel"||k==="wa")?`<a class="b" href="https://wa.me/${waNum(v)}">WhatsApp</a>`:"");
+  if(t==="email")a+=`<a class="b" href="mailto:${esc(v)}${m.mail?"?subject="+encodeURIComponent(r.objet||"")+"&body="+encodeURIComponent(r.note||""):""}">✉️ ${esc(l)}</a>`;
+  if(t==="addr"){const qq=encodeURIComponent(m.id==="biens"?[v,r.cp,r.ville].join(" "):v);a+=`<a class="b" href="https://www.google.com/maps/search/?api=1&query=${qq}">🗺️ Plan</a><a class="b" href="https://waze.com/ul?q=${qq}&navigate=yes">🚗 Waze</a>`}
+  if(t==="url")a+=`<a class="b" href="${esc(v)}">🔗 Ouvrir</a>`;
+  if(t==="soc")a+=`<a class="b" href="${/^https?:/i.test(v)?esc(v):x+encodeURIComponent(v.replace(/^@/,""))}">${esc(l)}</a>`;
+  if(t==="ctc")a+=cbtn(findc(v),m.inv?`Bonjour, je vous invite à « ${r.nom} » le ${r.date||""}${r.heure?" à "+r.heure:""}${r.lieu?" – "+r.lieu:""}.`:"",m.inv?r.nom:"")});
+ if(m.cal)a+=gcal(m,r);
+ if(m.tr){const c=(LG.find(z=>z[0]===r.langue)||[0,"en"])[1];a+=`<a class="b" href="https://translate.google.com/?sl=fr&tl=${c}&text=${encodeURIComponent(r.nom)}&op=translate">🌍 Traduire</a>`}
+ if(m.id==="biens")a+=`<a class="b" href="https://cadastre.gouv.fr/">🗺️ Cadastre</a>`;
+ return a}
+function flt(m,L){const f=q?L.filter(r=>JSON.stringify(r).toLowerCase().includes(q.toLowerCase())):L.slice();if(m.sort)f.sort((a,b)=>String(a[m.sort]||"~").localeCompare(String(b[m.sort]||"~")));return f}
+function mod(){
+ const m=gm(view),L=S("d:"+m.id)||[],f=flt(m,L);let tot="";
+ const sm=a=>a.reduce((s,r)=>s+(+r.montant||0),0);
+ if(m.f.some(x=>x[0]==="montant")){tot=`Total : <b>${eur(sm(f))}</b>`;
+  if(m.id==="ventes")tot+=`<br>Ventes : ${eur(sm(f.filter(r=>r.type==="Vente")))}<br>Achats : ${eur(sm(f.filter(r=>r.type==="Achat")))}`;
+  if(m.id==="frais")tot+=`<br>Reste à rembourser : ${eur(sm(f.filter(r=>r.statut!=="Remboursée")))}`;
+  if(m.mois){const g={};f.forEach(r=>{const k=(r.date||"").slice(0,7)||"sans date";g[k]=(g[k]||0)+(+r.montant||0)});tot+=Object.keys(g).sort().reverse().map(k=>`<br>${k} : ${eur(g[k])}`).join("")}}
+ if(m.id==="temps")tot=`Total : <b>${f.reduce((s,r)=>s+(+r.heures||0),0)} h</b>`;
+ if(tot)tot=`<div class="tot">${tot}</div>`;
+ app.innerHTML=`<div class="top"><button class="g" onclick="go('home')">‹</button><h1>${m.i} ${m.n}</h1><button onclick="frm('${m.id}')">+</button></div><p class="desc">${m.d}</p>
+ <input placeholder="Rechercher…" value="${esc(q)}" oninput="q=this.value;lst()">${tot}<div id="lst"></div>`;lst();
+}
+function lst(){
+ const m=gm(view),L=S("d:"+m.id)||[],f=flt(m,L);
+ $("#lst").innerHTML=f.length?f.map(r=>{const i=L.indexOf(r);
+  const meta=m.f.filter(x=>x[2]!=="h"&&x[2]!==P&&x[0]!=="nom"&&x[0]!=="prenom").map(([k,l,t])=>r[k]?(t===N?l+" : "+r[k]:r[k]):"").filter(Boolean).slice(0,3).join(" · ");
+  return `<div class="it" onclick="fiche('${m.id}',${i})">${av(r)}<div><b>${esc(dn(m,r))}</b><small>${esc(meta)}</small></div></div>`}).join(""):`<p class="desc">Rien pour l’instant. Touchez + pour ajouter.</p>`;
+}
+function fiche(id,i){
+ view="fiche";cur={id,i};const m=gm(id),r=(S("d:"+id)||[])[i];
+ let ex="";if(m.paie&&r.brut){const b=+r.brut,c=b*(+r.cotis||0)/100;ex=`<div class="tot">Net à payer : <b>${eur(b-c)}</b><br>Cotisations : ${eur(c)}</div>`}
+ let h="",sec="";m.f.filter(x=>x[2]!==P).forEach(([k,l,t])=>{if(t==="h"){sec=`<small style="font-weight:600;display:block;margin-top:10px">${l}</small>`;return}if(r[k]){h+=sec+`<div class="fv"><small>${l}</small>${esc(r[k])}${t==="pct"?" %":""}</div>`;sec=""}});
+ app.innerHTML=`<div class="top"><button class="g" onclick="go('${id}')">‹</button><h1>${esc(dn(m,r))}</h1></div>${m.f.some(x=>x[2]===P)?av(r,"big"):""}<div style="text-align:center">${links(m,r)}</div>${ex}<div class="it" style="display:block;margin-top:16px">${h}</div>${PEO.includes(id)?rel(dn(m,r)):""}${m.doc?`<button class="g" onclick="pdf('${id}',${i})" style="width:100%;margin-bottom:10px">📄 Voir / imprimer en PDF</button>`:""}<div class="top"><button onclick="frm('${id}',${i})" style="flex:1">Modifier</button><button class="d" onclick="del('${id}',${i})">Supprimer</button></div>`;
+}
+function frm(id,i){
+ const m=gm(id),r=i===undefined?{}:(S("d:"+id)||[])[i];pend=r.photo||"";
+ const names=people().map(p=>dn(p.m,p.r)).filter(Boolean),TY={[D]:"date",[N]:"number",tm:"time",email:"email",tel:"tel",url:"url"};
+ app.innerHTML=`<div class="top"><button class="g" onclick="${i===undefined?`go('${id}')`:`fiche('${id}',${i})`}">‹</button><h1>${i===undefined?"Nouveau":"Modifier"}</h1></div><datalist id="ctc">${names.map(n=>`<option value="${esc(n)}">`).join("")}</datalist>`+
+ m.f.map(([k,l,t,x])=>{
+  if(t==="h")return `<h1 style="font-size:17px;margin:16px 0 4px">${l}</h1>`;
+  if(t===P)return `<label>${l}</label><div class="it">${'<div class="av" id="pv"'+(pend?` style="background-image:url(${pend})"`:"")+'>'+(pend?"":"📷")+'</div>'}<input type="file" accept="image/*" onchange="photo(this)" style="margin:0"></div>`;
+  const v=esc(r[k]);let c;
+  if(t==="sel")c=`<select id="f_${k}"><option value=""></option>${x.map(o=>`<option ${r[k]===o?"selected":""}>${esc(o)}</option>`).join("")}</select>`;
+  else if(t==="area"||k==="note")c=`<textarea id="f_${k}" rows="3">${v}</textarea>`;
+  else if(t==="pct")c=`<input id="f_${k}" type="range" min="0" max="100" step="5" value="${+r[k]||0}" oninput="this.nextSibling.textContent=this.value+' %'"><span>${+r[k]||0} %</span>`;
+  else c=`<input id="f_${k}" value="${v}" type="${TY[t]||"text"}" step="any" ${t==="ctc"?'list="ctc" autocomplete="off"':""}>`;
+  return `<label>${l}</label>`+c}).join("")+
+ `<button onclick="save('${id}',${i===undefined?-1:i})" style="width:100%">Enregistrer</button>`;
+}
+function photo(el){
+ const fl=el.files[0];if(!fl)return;const rd=new FileReader();
+ rd.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement("canvas"),s=Math.min(1,256/Math.min(im.width,im.height)),w=im.width*s,h=im.height*s;
+  c.width=c.height=Math.min(w,h);c.getContext("2d").drawImage(im,(c.width-w)/2,(c.height-h)/2,w,h);
+  pend=c.toDataURL("image/jpeg",.75);const p=$("#pv");p.style.backgroundImage=`url(${pend})`;p.textContent=""};im.src=rd.result};rd.readAsDataURL(fl);
+}
+function save(id,i){
+ const m=gm(id),r={};
+ m.f.forEach(([k,,t])=>{if(t==="h")return;r[k]=t===P?pend:$("#f_"+k).value.trim()});
+ if(!dn(m,r)){alert("Le nom est obligatoire.");return}
+ if(!r.montant&&r.qte&&r.pu)r.montant=String(+r.qte*+r.pu);
+ const L=S("d:"+id)||[];i<0?L.unshift(r):L[i]=r;S("d:"+id,L);i<0?go(id):fiche(id,i);
+}
+function del(id,i){if(!confirm("Supprimer cette fiche ?"))return;const L=S("d:"+id)||[];L.splice(i,1);S("d:"+id,L);go(id)}
+function render(){view==="home"?home():view==="set"?setp():mod()}
+const h=async s=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode("g"+s)))].map(b=>b.toString(16).padStart(2,"0")).join("");
+async function setPin(rm){if(rm){S("pin",null);S("fid",null);alert("Code retiré.");return}const p=prompt("Nouveau code (4 chiffres ou plus)");if(!p||p.length<4)return;S("pin",await h(p));alert("Code défini.")}
+function lock(){app.innerHTML=`<div class="top"><div class="logo">G</div><h1>Code d’accès</h1></div>${S('pin')?`<input id="pn" type="password" inputmode="numeric" placeholder="Code"><button onclick="unlock()" style="width:100%">Ouvrir</button>`:''}${S('fid')?`<button class="g" onclick="faceUnlock()" style="width:100%;margin-top:10px">Face ID</button>`:''}`}
+async function unlock(){if(await h($("#pn").value)===S("pin")){try{sessionStorage.setItem("ok","1")}catch(e){}render()}else alert("Code incorrect")}
+function expo(){const o={};M.forEach(m=>{const d=S("d:"+m.id);if(d&&d.length)o[m.id]=d});const j=JSON.stringify(o);navigator.clipboard.writeText(j).then(()=>alert("Sauvegarde copiée. Collez-la dans Notes."),()=>prompt("Copiez cette sauvegarde :",j))}
+function impo(){const j=prompt("Collez la sauvegarde ici");if(!j)return;try{const o=JSON.parse(j);Object.keys(o).forEach(k=>{if(gm(k))S("d:"+k,o[k])});alert("Sauvegarde importée.");go("home")}catch(e){alert("Sauvegarde illisible.")}}
+function pdf(id,i){const m=gm(id),r=(S("d:"+id)||[])[i];let co=S("co");if(co===null){co=prompt("Nom de votre entreprise (en-tête du document)")||"";S("co",co)}
+const t=+(prompt("TVA en % (0 si non applicable)",S("tva")??20))||0;S("tva",t);const ht=+r.montant||0,tv=ht*t/100;view="doc";
+app.innerHTML=`<div class="top no"><button class="g" onclick="fiche('${id}',${i})">‹</button><button onclick="window.print()">Imprimer / PDF</button></div><div id="doc" class="it" style="display:block;background:#fff;color:#000"><h1>${m.doc} ${esc(r.nom)}</h1><p>${esc(co)}<br>Date : ${esc(r.date)}</p><p><b>Client :</b> ${esc(r.client)}</p><hr><p>Montant HT : ${eur(ht)}<br>TVA (${t} %) : ${eur(tv)}<br><b>Total TTC : ${eur(ht+tv)}</b></p>${r.statut?`<p>Statut : ${esc(r.statut)}</p>`:""}</div>`}
+const b64=b=>btoa(String.fromCharCode(...new Uint8Array(b))),ub=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function faceReg(){try{const c=await navigator.credentials.create({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),rp:{name:'Ma Gestion'},user:{id:crypto.getRandomValues(new Uint8Array(16)),name:'moi',displayName:'Moi'},pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:'platform',userVerification:'required'},timeout:60000}});S('fid',b64(c.rawId));alert('Face ID activé.')}catch(e){alert('Face ID n’est pas disponible ici. Utilisez le code.')}}
+async function faceUnlock(){try{await navigator.credentials.get({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),allowCredentials:[{type:'public-key',id:ub(S('fid')),transports:['internal']}],userVerification:'required',timeout:60000}});try{sessionStorage.setItem('ok','1')}catch(e){}render()}catch(e){alert('Face ID refusé ou indisponible.')}}
+let cloud='',DB=null,UID=null;
+function cl(){const e=$('#cl');if(e)e.textContent=cloud}
+function dash(){const tot=(id,f)=>(S('d:'+id)||[]).filter(f||(()=>1)).reduce((a,r)=>a+(+r.montant||0),0),td=new Date().toISOString().slice(0,10),mo=td.slice(0,7),inm=r=>(r.date||'').startsWith(mo);
+const due=tot('factures',r=>!/^(oui|pay|o$)/i.test((r.statut||'').trim())),fr=tot('frais',inm)+tot('depenses',inm);
+const tk=(S('d:taches')||[]).filter(r=>(!r.date||r.date>=td)&&r.statut!=='Terminée').sort((a,b)=>(a.date||'9').localeCompare(b.date||'9')).slice(0,3);
+const st=(l,v)=>`<div class="tile" style="padding:10px 6px"><span>${v}</span><small>${l}</small></div>`;
+return `<div id="cl" class="desc" style="margin:-6px 0 8px">${cloud}</div><div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:12px">${st('Facturé',eur(tot('factures')))}${st('À encaisser',eur(due))}${st('Frais du mois',eur(fr))}</div>`+(tk.length?`<div class="tot"><b>À faire</b>${tk.map(r=>`<br>• ${esc(r.nom)} ${esc(r.date||'')}`).join('')}</div>`:'')}
+function rel(n){if(!n)return '';const k=n.trim().toLowerCase();let h='';
+M.forEach(m=>{if(['contacts','comptes','prospection'].includes(m.id))return;const fk=m.f.some(x=>x[0]==='client')?'client':m.f.some(x=>x[0]==='contact')?'contact':['appels','paiements'].includes(m.id)?'nom':null;if(!fk)return;
+(S('d:'+m.id)||[]).forEach((r,i)=>{if((r[fk]||'').trim().toLowerCase()===k)h+=`<div class="it" onclick="fiche('${m.id}',${i})"><div class="av" style="width:36px;height:36px">${m.i}</div><div><b>${esc(r.nom)}</b><small>${m.n}${r.montant?' · '+eur(+r.montant):''}${r.date?' · '+esc(r.date):''}</small></div></div>`})});
+return h?`<h1 style="font-size:18px;margin:16px 0 4px">Liés à ${esc(n)}</h1>`+h:''}
+function push(id){const l=S('d:'+id)||[],t=Date.now();try{localStorage.setItem('t:'+id,t)}catch(e){}if(!DB)return;let x=JSON.stringify(l);if(x.length>240000)x=JSON.stringify(l.map(r=>({...r,photo:''})));DB.collection('data/users/'+UID).doc(id).set({json:x,t}).then(()=>{cloud='☁️ synchronisé';cl()},()=>{cloud='☁️ erreur de synchronisation';cl()})}
+(async()=>{try{const c=window.claude;if(!c)return;const [db,u]=await Promise.all([c.use('db'),c.use('user')]);if(!db||!u)return;DB=db;UID=await u.id();cloud='☁️ connexion…';cl();
+db.collection('data/users/'+UID).onSnapshot(s=>{const have={};s.docs.forEach(d=>{const v=d.data();if(!v||!gm(d.id))return;have[d.id]=1;const lt=+localStorage.getItem('t:'+d.id)||0;if(v.t>lt){try{localStorage.setItem('d:'+d.id,v.json);localStorage.setItem('t:'+d.id,v.t)}catch(e){}}});
+M.forEach(m=>{if(!have[m.id]&&(S('d:'+m.id)||[]).length)push(m.id)});cloud='☁️ synchronisé';if(view==='home')render();else cl()},()=>{cloud='☁️ hors ligne';cl()})}catch(e){}})();
+let ok=false;try{ok=!!sessionStorage.getItem('ok')}catch(e){}
+if((S('pin')||S('fid'))&&!ok){lock()}else render();
+</script></body></html>
