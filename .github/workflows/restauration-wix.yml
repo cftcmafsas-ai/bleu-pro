@@ -1,0 +1,181 @@
+name: Restaurer BLEU PRO depuis Wix
+
+on:
+  push:
+    branches:
+      - restauration-accueil
+    paths:
+      - .github/workflows/restauration-wix.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: restauration-wix
+  cancel-in-progress: false
+
+jobs:
+  restauration:
+    if: github.ref == 'refs/heads/restauration-accueil'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Lire uniquement la branche de restauration
+        uses: actions/checkout@v4
+        with:
+          ref: restauration-accueil
+
+      - name: Vérifier la branche
+        run: |
+          test "$(git branch --show-current)" = "restauration-accueil"
+
+      - name: Récupérer, adapter et contrôler les fichiers
+        shell: python
+        run: |
+          import hashlib
+          import pathlib
+          import re
+          import urllib.request
+
+          base = (
+              "https://headless-cwztzlnvass-guerrisseur-140b."
+              "wix-site-host.com/"
+          )
+          names = ["index.html", "app.js", "ma-gestion.html"]
+          sources = {}
+
+          for name in names:
+              request = urllib.request.Request(
+                  base + name,
+                  headers={"User-Agent": "BLEU-PRO-restauration/1.0"}
+              )
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  if response.status != 200:
+                      raise RuntimeError("Téléchargement refusé : " + name)
+                  raw = response.read()
+
+              text = raw.decode("utf-8")
+
+              if len(raw) < 1000:
+                  raise RuntimeError("Fichier anormalement court : " + name)
+
+              if name.endswith(".html") and "<html" not in text.lower():
+                  raise RuntimeError("HTML attendu : " + name)
+
+              if name == "app.js":
+                  if "<html" in text.lower() or "supabase" not in text.lower():
+                      raise RuntimeError("Script app.js inattendu")
+
+              sources[name] = raw
+
+          original = sources["index.html"].decode("utf-8")
+          modified = original
+
+          markers = ["const KW=", "BLEU-XXXX-XXXX", 'id="go"']
+          if not all(marker in original for marker in markers):
+              raise RuntimeError("Accueil source inattendu : arrêt")
+
+          replacements = [
+              (
+                  '<a href="#gda" style="background:var(--p3)">'
+                  'Guérisseur de l’Âme</a>',
+                  '<a href="#gda" style="background:var(--p3)">'
+                  'Mes autres sites</a>'
+              ),
+              (
+                  '<section class="duo" aria-label="Mes autres sites">',
+                  '<section id="gda" class="duo" '
+                  'aria-label="Mes autres sites">'
+              )
+          ]
+
+          for before, after in replacements:
+              if modified.count(before) != 1:
+                  raise RuntimeError("Menu ou ancre ambigu : arrêt")
+              modified = modified.replace(before, after, 1)
+
+          images = [
+              (
+                  "Logo BLEU PRO",
+                  "https://raw.githubusercontent.com/cftcmafsas-ai/"
+                  "Guerisseur-de-lame/main/logos.JPG"
+              ),
+              (
+                  "Rodolphe Torres Tirado",
+                  "https://raw.githubusercontent.com/cftcmafsas-ai/"
+                  "Guerisseur-de-lame/main/rodolphe.JPG"
+              )
+          ]
+
+          for alt, url in images:
+              pattern = (
+                  r'(<img\b[^>]*src=")[^"]+("[^>]*alt="'
+                  + re.escape(alt)
+                  + r'"[^>]*>)'
+              )
+              matches = list(re.finditer(pattern, modified))
+
+              if len(matches) != 1:
+                  raise RuntimeError("Image ambiguë : " + alt)
+
+              replacements.append((matches[0].group(0),
+                                   matches[0].group(1) + url
+                                   + matches[0].group(2)))
+
+              modified = re.sub(
+                  pattern,
+                  lambda match: match.group(1) + url + match.group(2),
+                  modified
+              )
+
+          scripts = r"<script\b[^>]*>[\s\S]*?</script>"
+          if re.findall(scripts, original) != re.findall(scripts, modified):
+              raise RuntimeError("Un script intégré a changé : arrêt")
+
+          restored = modified
+          for before, after in reversed(replacements):
+              if restored.count(after) != 1:
+                  raise RuntimeError("Contrôle inverse ambigu : arrêt")
+              restored = restored.replace(after, before, 1)
+
+          if restored != original:
+              raise RuntimeError("Changement non autorisé détecté : arrêt")
+
+          outputs = dict(sources)
+          outputs["index.html"] = modified.encode("utf-8")
+
+          for name, raw in outputs.items():
+              pathlib.Path(name).write_bytes(raw)
+
+          for name in ["app.js", "ma-gestion.html"]:
+              if pathlib.Path(name).read_bytes() != sources[name]:
+                  raise RuntimeError("Fichier source altéré : " + name)
+
+          summary = pathlib.Path(
+              __import__("os").environ["GITHUB_STEP_SUMMARY"]
+          )
+          with summary.open("a") as report:
+              report.write("## Contrôle de restauration\n")
+              report.write("Quatre adaptations autorisées dans index.html.\n\n")
+              for name in names:
+                  digest = hashlib.sha256(outputs[name]).hexdigest()
+                  report.write(f"- `{name}` — SHA-256 : `{digest}`\n")
+              report.write(
+                  "\napp.js et ma-gestion.html : identiques aux sources.\n"
+              )
+
+      - name: Enregistrer uniquement les trois fichiers
+        run: |
+          test "$(git branch --show-current)" = "restauration-accueil"
+
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -- index.html app.js ma-gestion.html
+
+          if ! git diff --cached --quiet; then
+            git commit -m \
+              "Restaurer les sources Wix : menu, ancre et images"
+            git push origin HEAD:refs/heads/restauration-accueil
+          fi
