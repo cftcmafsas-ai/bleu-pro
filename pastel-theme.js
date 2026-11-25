@@ -58,3 +58,10 @@
   toggle.addEventListener("click",function(){panel.hidden=!panel.hidden;});
   panel.hidden=true;apply(current);
 })();
+(function(){
+  var img=document.createElement("img");
+  img.src="/PHOTO-2026-11-25-20-19-54.jpg";img.alt="Rodolphe Torres Tirado";
+  img.style.cssText="display:block;margin:12px auto;width:min(80%,320px);height:auto;border-radius:12px";
+  var h=document.querySelector("h1");
+  if(h&&h.parentNode){h.parentNode.insertBefore(img,h.nextSibling);}else{document.body.insertBefore(img,document.body.firstChild);}
+})();
