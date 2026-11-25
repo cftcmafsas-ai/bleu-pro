@@ -1,19 +1,51 @@
 (function(){
-  var sites=[
-    {id:'guerisseur',name:'Guérisseur de l’Âme',url:'https://guerisseur-de-lame.vercel.app/'},
-    {id:'bleupro',name:'Transfert BLEU PRO',url:'https://transfert-bleu-pro.vercel.app/'},
-    {id:'documents',name:'Transfert Mes Documents',url:'https://mes-documents-seven.vercel.app/'},
-    {id:'gestion',name:'Transfert Ma Gestion Web',url:'https://ma-gestion-web.vercel.app/'},
-    {id:'creatif',name:'Espace Créatif',url:'https://espace-creatif.vercel.app/'}
-  ];
-  var host=location.hostname;
-  var current=host.indexOf('guerisseur-de-lame')>=0?'guerisseur':host.indexOf('transfert-bleu-pro')>=0?'bleupro':host.indexOf('mes-documents')>=0?'documents':host.indexOf('ma-gestion-web')>=0?'gestion':'creatif';
-  var targets=sites.filter(function(s){return s.id!==current;});
-  var old=document.getElementById('project-sites-nav');if(old)old.remove();
-  var nav=document.createElement('nav');nav.id='project-sites-nav';nav.setAttribute('aria-label','Accès direct aux autres sites');
-  var label=document.createElement('strong');label.textContent='Accès direct aux autres sites';nav.appendChild(label);
-  targets.forEach(function(s){var a=document.createElement('a');a.href=s.url;a.textContent=s.name;a.rel='noopener';nav.appendChild(a);});
-  var css=document.createElement('style');css.textContent='#project-sites-nav{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;padding:14px 16px;background:var(--site-soft,#e8f2fa);border-bottom:1px solid var(--site-border,#dceaf4);font:14px system-ui,sans-serif}#project-sites-nav strong{font-size:13px;color:var(--site-text,#435d73);width:100%;text-align:center}#project-sites-nav a{display:inline-block;padding:8px 13px;border-radius:999px;background:var(--site-card,#fff);border:1px solid var(--site-border,#dceaf4);color:var(--site-text,#435d73);text-decoration:none;font-weight:600}#project-sites-nav a:hover{filter:brightness(.97)}';
-  document.head.appendChild(css);var header=document.querySelector('header');
-  if(header&&header.parentNode)header.insertAdjacentElement('afterend',nav);else document.body.insertBefore(nav,document.body.firstChild);
+  function update(){
+    document.getElementById('project-sites-nav')?.remove();
+    document.getElementById('cross-site-navigation')?.remove();
+    var hero=document.getElementById('accueil');
+    var title=hero?.querySelector('h1');
+    var logo=hero?.querySelector('img');
+    if(title&&logo)hero.insertBefore(title,logo);
+    var contact=document.getElementById('contact');
+    if(contact){
+      contact.querySelectorAll('a[href^="mailto:"]').forEach(function(a){a.href='mailto:rodolphetorres@outlook.fr';a.textContent='E-mail : rodolphetorres@outlook.fr';});
+      contact.querySelectorAll('a[href*="wa.me/"]').forEach(function(a){a.href='https://wa.me/33769737356';a.textContent='WhatsApp : 07 69 73 73 56';});
+      var walker=document.createTreeWalker(contact,NodeFilter.SHOW_TEXT);
+      var n;while(n=walker.nextNode()){n.nodeValue=n.nodeValue.replaceAll('rodolphertorres@outlook.fr','rodolphetorres@outlook.fr').replaceAll('+33 7 69 73 73 56','07 69 73 73 56');}
+    }
+    var panel=document.getElementById('pastel-theme-panel');
+    var grid=panel?.querySelector('.pt-colors');
+    var toggle=document.getElementById('pastel-theme-toggle');
+    if(!panel||!grid||!toggle)return;
+    var themes=[
+      ['origine','Couleur d’origine : bleu','#f7fafc','#ffffff','#46535e','#7a8c9a','#b9d6ee','#eaf3fa','#dde8f0'],
+      ['azur','Bleu azur','#f4f7ff','#fcfdff','#46557a','#7c88a8','#cdd9f7','#e6edfc','#e2e8f6'],
+      ['perle','Gris perle','#f8f8fa','#fefefe','#55575f','#85878f','#dcdde3','#eeeef2','#e8e8ec'],
+      ['rose','Rose poudré','#fff8f9','#fffafb','#684c56','#987b85','#f0d0d9','#faeaef','#f4e6eb'],
+      ['lavande','Lavande','#faf8ff','#fdfbff','#594f70','#887e9e','#ddd3f1','#f1ebfa','#efe9f5'],
+      ['menthe','Menthe','#f5fcf9','#fbfffd','#45665a','#78978a','#d2ece0','#eaf7f1','#e6f3ed'],
+      ['peche','Pêche','#fff9f5','#fffdfb','#76584a','#a08070','#f7dbca','#fceee6','#f6ebe4'],
+      ['vanille','Jaune vanille','#fffdf4','#fffef8','#6b6245','#958a68','#f5ebc6','#faf5e1','#f3eedd'],
+      ['bleu','Bleu','#F2F7FD','#FCFDFF','#243F60','#667F9B','#A9CBEF','#E2EDFA','#D5E3F2']
+    ];
+    function apply(id){
+      if(id==='ciel')id='origine';
+      var p=themes.find(function(t){return t[0]===id;})||themes[0];
+      ['bg','card','text','muted','accent','soft','border'].forEach(function(name,i){document.documentElement.style.setProperty('--site-'+name,p[i+2]);});
+      try{localStorage.setItem('pastel-theme-v1',p[0]);}catch(e){}
+      grid.querySelectorAll('[data-theme]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.theme===p[0]));});
+    }
+    grid.replaceChildren();
+    themes.forEach(function(p){var b=document.createElement('button');b.type='button';b.dataset.theme=p[0];b.setAttribute('aria-label',p[1]);var dot=document.createElement('i');dot.style.background=p[6];var label=document.createElement('span');label.textContent=p[1];b.append(dot,label);b.onclick=function(){apply(p[0]);};grid.appendChild(b);});
+    var css=document.createElement('style');css.id='bleupro-harmonisation';
+    css.textContent='#pastel-theme-panel .pt-colors button[data-theme=origine],#pastel-theme-panel .pt-colors button[data-theme=vanille],#pastel-theme-panel .pt-colors button[data-theme=bleu]{grid-column:1/-1;justify-content:center}#pastel-theme-panel .pt-colors button[data-theme=origine]{font-weight:700}#pastel-theme-panel[hidden]{display:none!important}#pastel-theme-panel #pastel-theme-close{display:block;width:28px;height:28px;padding:0;text-align:center;line-height:28px}body>.account-fab{bottom:66px}#contact a{overflow-wrap:anywhere}';
+    document.head.appendChild(css);
+    toggle.setAttribute('aria-controls',panel.id);
+    toggle.setAttribute('aria-expanded',String(!panel.hidden));
+    toggle.addEventListener('click',function(){toggle.setAttribute('aria-expanded',String(!panel.hidden));});
+    panel.querySelector('#pastel-theme-close')?.addEventListener('click',function(){toggle.setAttribute('aria-expanded','false');});
+    panel.addEventListener('keydown',function(e){if(e.key==='Escape'){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus();}});
+    var saved='origine';try{saved=localStorage.getItem('pastel-theme-v1')||'origine';}catch(e){}apply(saved);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update,{once:true});else update();
 })();
