@@ -49,3 +49,17 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update,{once:true});else update();
 })();
+
+(function(){
+  function contactIdentique(){
+    var section=document.getElementById('contact');
+    if(!section)return;
+    section.setAttribute('aria-labelledby','bp-contact-title');
+    section.innerHTML=`<h2 id="bp-contact-title">Me contacter</h2><p class="lead">Ensemble, cheminons vers un mieux-être durable</p><div class="card"><h3>WhatsApp uniquement</h3><p>07 69 73 73 56</p><p><a class="btn" href="https://wa.me/33769737356">Écrire sur WhatsApp ›</a></p></div><div class="card"><h3>E-mail</h3><p>rodolphetorres@outlook.fr</p><p><a class="btn" href="mailto:rodolphetorres@outlook.fr">Envoyer un e-mail ›</a></p></div><form class="card" aria-describedby="bp-contact-note"><div class="contact-fields"><label for="bp-contact-nom">Nom<input id="bp-contact-nom" name="nom" autocomplete="family-name" required></label><label for="bp-contact-prenom">Prénom<input id="bp-contact-prenom" name="prenom" autocomplete="given-name" required></label><label for="bp-contact-email" class="contact-full">Email<input id="bp-contact-email" name="email" type="email" autocomplete="email" required></label><label for="bp-contact-message" class="contact-full">Message<textarea id="bp-contact-message" name="message" rows="6" required></textarea></label></div><p><button class="btn" type="button" disabled aria-describedby="bp-contact-note">Envoyer</button></p><p id="bp-contact-note" class="contact-note">L’envoi par formulaire n’est pas encore activé. Pour me contacter, utilisez WhatsApp ou le lien e-mail ci-dessus.</p></form>`;
+    section.querySelector('form').addEventListener('submit',function(e){e.preventDefault();});
+    var style=document.createElement('style');style.id='bleupro-contact-identique';
+    style.textContent='#contact{max-width:820px;margin:0 auto;padding:28px 18px 50px;text-align:center;font-size:17px;line-height:1.65}#contact h2{font:600 1.6rem/1.2 Georgia,"Times New Roman",serif}#contact h3{font:600 1.25rem/1.2 Georgia,"Times New Roman",serif;margin:.2em 0}#contact .lead{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:1.3rem;color:var(--mu)}#contact .card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px 20px;margin:14px 0}#contact .btn{display:inline-block;padding:12px 28px;border:0;border-radius:999px;background:var(--p3);color:var(--dk,#3a4955);text-decoration:none;font-weight:600;font-size:1.05rem;font-family:inherit}#contact .contact-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px;text-align:left}#contact label{display:block;font-size:15px;font-weight:500;margin-top:0;color:inherit}#contact input,#contact textarea{display:block;width:100%;margin-top:6px;padding:12px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font:inherit}#contact .contact-full{grid-column:1/-1}#contact textarea{resize:vertical}#contact .contact-note{font-size:13px;color:var(--mu)}#contact button:disabled{opacity:.6;cursor:not-allowed}@media(max-width:640px){#contact .contact-fields{grid-template-columns:1fr}}';
+    document.head.appendChild(style);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',contactIdentique,{once:true});else contactIdentique();
+})();
