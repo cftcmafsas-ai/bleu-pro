@@ -1,24 +1,45 @@
 (function(){
-var SUPABASE_URL="https://aosyeewlrzibqaklhcxp.supabase.co";
-var SUPABASE_KEY="sb_publishable_MNA_y086hJoleBjry7sm1Q_Mt0yNAnv";
-var SITE_KEY="bleupro";
-var client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-var buttons=Array.prototype.slice.call(document.querySelectorAll(".swatch"));
-var status=document.getElementById("color-status");
-var authStatus=document.getElementById("auth-status");
-var authForm=document.getElementById("auth-form");
-var userPanel=document.getElementById("user-panel");
-var userEmail=document.getElementById("user-email");
-var root=document.documentElement;
-function applyColor(color){root.style.setProperty("--p3",color);root.style.setProperty("--p2","color-mix(in srgb, "+color+" 55%, white)");root.style.setProperty("--p1","color-mix(in srgb, "+color+" 25%, white)");buttons.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.color===color))});}
-function setStatus(t){status.textContent=t;}
-function setAuthUI(user){var swatches=document.querySelector(".color-system .swatches");var colorStatus=document.getElementById("color-status");if(swatches){swatches.style.display=user?"":"none";}if(colorStatus){colorStatus.style.display=user?"":"none";}if(user){authForm.hidden=true;userPanel.hidden=false;userEmail.textContent="Connecté : "+user.email;loadPreference();}else{authForm.hidden=false;userPanel.hidden=true;userEmail.textContent="";setStatus("Connecte-toi pour enregistrer une couleur.");applyColor("#b9d6ee");}}
-async function loadPreference(){var user=(await client.auth.getUser()).data.user;if(!user)return;var r=await client.from("site_color_preferences").select("circle_color").eq("user_id",user.id).eq("site_key",SITE_KEY).maybeSingle();if(r.error){setStatus("Erreur de lecture : "+r.error.message);return;}if(r.data&&r.data.circle_color){applyColor(r.data.circle_color);setStatus("Couleur enregistrée : "+r.data.circle_color);}else{setStatus("Aucune couleur enregistrée pour ce site.");}}
-async function savePreference(color){var user=(await client.auth.getUser()).data.user;if(!user){setStatus("Connecte-toi pour enregistrer une couleur.");return;}applyColor(color);setStatus("Enregistrement…");var r=await client.from("site_color_preferences").upsert({user_id:user.id,site_key:SITE_KEY,circle_color:color},{onConflict:"user_id,site_key"});if(r.error){setStatus("Erreur d’enregistrement : "+r.error.message);return;}setStatus("Couleur enregistrée : "+color);}
-document.getElementById("sign-in").addEventListener("click",async function(){var email=document.getElementById("email").value;var password=document.getElementById("password").value;authStatus.textContent="Connexion…";var r=await client.auth.signInWithPassword({email:email,password:password});if(r.error){authStatus.textContent=r.error.message;return;}authStatus.textContent="";setAuthUI(r.data.user);});
-document.getElementById("sign-up").addEventListener("click",async function(){var email=document.getElementById("email").value;var password=document.getElementById("password").value;authStatus.textContent="Création…";var r=await client.auth.signUp({email:email,password:password});if(r.error){authStatus.textContent=r.error.message;return;}authStatus.textContent=r.data.session?"Compte créé et connecté.":"Compte créé. Vérifie ton e-mail si une confirmation est demandée.";setAuthUI(r.data.user);});
-document.getElementById("sign-out").addEventListener("click",async function(){await client.auth.signOut();setAuthUI(null);});
-buttons.forEach(function(b){b.addEventListener("click",function(){savePreference(b.dataset.color);});});
-client.auth.onAuthStateChange(function(e,s){setAuthUI(s?s.user:null);});
-client.auth.getSession().then(function(r){setAuthUI(r.data.session?r.data.session.user:null);});
+  function setup(){
+    var login='https://ma-gestion-web.rodolphetorres.workers.dev/login';
+    var signup=login+'?mode=creation';
+    var access=document.getElementById('acces');
+    if(access){
+      access.innerHTML='<h2>Votre espace Ma Gestion Web</h2><p class="sub">Retrouvez vos clients, devis, factures et rendez-vous dans votre application de gestion.</p><div class="box bp-access-card"><p>Un seul compte : celui de Ma Gestion Web.</p><p><a class="btn" href="'+login+'">Accéder à Ma Gestion Web</a></p><p class="sub">Connexion ou création de compte sur Ma Gestion Web.</p></div>';
+    }
+    var hero=document.getElementById('accueil');
+    if(hero)hero.querySelectorAll('a[href="#acces"]').forEach(function(a){a.href=login;a.textContent='Accéder à Ma Gestion Web';});
+    var app=document.getElementById('app');
+    if(app){
+      var heading=app.querySelector('h2');if(heading)heading.textContent='Ma Gestion Web';
+      var note=app.querySelector('.box > p.sub');
+      if(note)note.textContent='Aperçu non cliquable. Retrouvez votre application sur Ma Gestion Web avec votre compte habituel.';
+    }
+    var toggle=document.getElementById('account-toggle');
+    var modal=document.getElementById('account-modal');
+    var card=modal?.querySelector('.modal-card');
+    if(toggle){toggle.setAttribute('aria-label','Ouvrir Mon espace Ma Gestion Web');toggle.setAttribute('aria-controls','account-modal');}
+    if(card){
+      card.setAttribute('aria-label','Mon espace Ma Gestion Web');
+      var close=card.querySelector('[data-close-account]');
+      var title=document.createElement('h2');title.id='bp-espace-title';title.textContent='Mon espace';
+      var intro=document.createElement('p');intro.textContent='Votre application se trouve sur Ma Gestion Web.';
+      var help=document.createElement('p');help.textContent='Utilisez votre compte Ma Gestion Web habituel.';
+      var links=document.createElement('div');links.className='bp-portal-links';
+      var signIn=document.createElement('a');signIn.className='btn';signIn.href=login;signIn.textContent='Se connecter / accéder à mon espace';
+      var caption=document.createElement('p');caption.textContent='Pas encore de compte ?';
+      var signUp=document.createElement('a');signUp.className='btn bp-signup';signUp.href=signup;signUp.textContent='Créer mon compte sur Ma Gestion Web';
+      links.append(signIn,caption,signUp);
+      var note=document.createElement('p');note.className='sub';note.textContent='La connexion s’effectue sur Ma Gestion Web. Si vous y êtes déjà connecté dans ce navigateur, vous retrouverez directement votre espace.';
+      card.replaceChildren();if(close)card.append(close);card.append(title,intro,help,links,note);
+      card.setAttribute('aria-labelledby',title.id);
+      if(toggle){
+        toggle.addEventListener('click',function(){if(modal.classList.contains('open')){var first=card.querySelector('a');if(first)first.focus();}});
+        modal.querySelectorAll('[data-close-account]').forEach(function(b){b.addEventListener('click',function(){toggle.focus();});});
+      }
+    }
+    var style=document.createElement('style');style.id='bleupro-gestion-portal';
+    style.textContent='.bp-access-card{text-align:center}.bp-portal-links{display:flex;flex-direction:column;gap:12px;margin:24px 0}.bp-portal-links .btn{display:block;text-align:center;font-size:15px;padding:12px 16px}.bp-portal-links p{margin:0;text-align:center;font-size:14px}.bp-portal-links .bp-signup{background:var(--site-soft,var(--p1))!important}.modal-card .sub{font-size:13px;line-height:1.5}.modal-card #bp-espace-title{padding-right:32px}';
+    document.head.appendChild(style);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
 })();
