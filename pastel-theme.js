@@ -59,12 +59,20 @@
   panel.hidden=true;apply(current);
 })();
 (function(){
-  var img=document.createElement("img");
-  img.id="logo-rodolphe-torres-tirado";
-  img.src="/PHOTO-2026-11-25-20-19-54.jpg";img.alt="Rodolphe Torres Tirado";
-  img.style.cssText="display:block;margin:12px auto;width:min(80%,320px);height:auto;border-radius:12px";
-  var h=document.querySelector("h1");
-  if(h&&h.parentNode){h.parentNode.insertBefore(img,h.nextSibling);}else{document.body.insertBefore(img,document.body.firstChild);}
-  var first=document.querySelector("img:not(#logo-rodolphe-torres-tirado)");
-  if(first&&(first.compareDocumentPosition(img)&Node.DOCUMENT_POSITION_FOLLOWING)){first.remove();}
+  if(window.__logoRodolpheOk)return;window.__logoRodolpheOk=true;
+  var ID="logo-rodolphe-torres-tirado";
+  function logoUnique(){
+    var h=document.querySelector("h1");
+    if(!h||!h.parentNode)return false;
+    Array.prototype.forEach.call(document.querySelectorAll('header img,.hero img,img[src*="Guerisseur-de-lame"],img[src*="PHOTO-2026"],img[alt="Logo BLEU PRO"],img[alt="Rodolphe Torres Tirado"]'),function(e){if(e.id!==ID)e.remove();});
+    var img=document.getElementById(ID);
+    if(!img){
+      img=document.createElement("img");img.id=ID;
+      img.src="/Rodolphe%20Torres%20Tirado.jpeg";img.alt="Rodolphe Torres Tirado";
+      img.style.cssText="display:block;margin:12px auto;width:min(80%,320px);height:auto;border-radius:12px";
+    }
+    if(img.previousSibling!==h)h.parentNode.insertBefore(img,h.nextSibling);
+    return true;
+  }
+  if(!logoUnique()){document.addEventListener("DOMContentLoaded",logoUnique);}
 })();
