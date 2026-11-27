@@ -302,6 +302,7 @@
     }
 
 
+    /* Synchronisation Cloudflare : inclure les derniers fichiers de navigation et de lecteur. */
     /* BLEU PRO — en-tête : logo à gauche, identité centrée, lotus à droite. */
     .brand-header{
       display:grid!important;
