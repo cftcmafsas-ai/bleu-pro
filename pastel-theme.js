@@ -170,7 +170,7 @@
     {id:"peche",name:"Pêche",bg:"#fff9f5",card:"#fffdfb",text:"#76584a",muted:"#a08070",accent:"#f7dbca",soft:"#fceee6",border:"#f6ebe4"},
     {id:"vanille",name:"Jaune vanille",bg:"#fffdf4",card:"#fffef8",text:"#6b6245",muted:"#958a68",accent:"#f5ebc6",soft:"#faf5e1",border:"#f3eedd"}
   ];
-  var themeKey="bleu-pro-theme-v1",current="bleu";
+  var themeKey="bleu-pro-theme-v2",current="bleu";
   try{current=localStorage.getItem(themeKey)||"bleu";}catch(e){}
   style.textContent += `
     body{background:var(--site-bg)!important;color:var(--site-text)!important}
@@ -206,82 +206,82 @@
     #pastel-theme-toggle:hover{transform:translateY(-2px)}
     @media(max-width:520px){#pastel-theme-toggle{right:78px;bottom:82px;width:52px;height:52px}}
 
-    /* Accueil BLEU PRO — harmonisation de présentation sur le modèle Guérisseur de l’Âme */
-    body{background:linear-gradient(180deg,#eaf6ff 0%,#f8fcff 44%,#e9f5ff 100%)!important;color:var(--site-text)!important}
+    /* BLEU PRO — accueil et navigation harmonisés dans les bleus de la marque */
+    body{background:linear-gradient(180deg,var(--site-soft),var(--site-card) 48%,var(--site-bg))!important;color:var(--site-text)!important}
     .brand-header{
       position:relative!important;top:auto!important;z-index:10!important;
       display:grid!important;grid-template-columns:minmax(110px,190px) minmax(0,1fr) minmax(140px,230px)!important;
       align-items:center!important;gap:clamp(12px,2.5vw,30px)!important;
       min-height:170px;padding:12px clamp(16px,4vw,54px)!important;
-      background:linear-gradient(105deg,#e5f4ff 0%,#c9e6fb 48%,#eaf6ff 100%)!important;
-      border:0!important;border-bottom:1px solid #b5d8f4!important;
-      box-shadow:0 5px 18px rgba(24,78,139,.10)!important;backdrop-filter:none!important
+      background:linear-gradient(105deg,var(--site-soft),var(--site-accent),var(--site-card))!important;
+      border:0!important;border-bottom:1px solid var(--site-border)!important;
+      box-shadow:0 5px 18px rgba(111,83,130,.10)!important;backdrop-filter:none!important
     }
     .brand-mark{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:145px!important;max-height:145px!important;line-height:0!important}
     .brand-mark img{display:block!important;width:100%!important;height:100%!important;max-height:145px!important;max-width:180px!important;object-fit:contain!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
     .brand-heading{text-align:center!important;padding:0!important;min-width:0}
-    .brand-heading h1{margin:0!important;color:#10377f!important;font:700 clamp(2.2rem,5vw,4.5rem)/1.08 "Cormorant Garamond",Georgia,serif!important;letter-spacing:.01em!important}
-    .brand-heading p{margin:8px 0 0!important;color:#244d91!important;font:italic 500 clamp(1.05rem,2.2vw,1.8rem)/1.25 "Cormorant Garamond",Georgia,serif!important}
+    .brand-heading h1{margin:0!important;color:var(--site-text)!important;font:700 clamp(2.2rem,5vw,4.5rem)/1.08 "Cormorant Garamond",Georgia,serif!important;letter-spacing:.01em!important}
+    .brand-heading p{margin:8px 0 0!important;color:var(--site-muted)!important;font:italic 500 clamp(1.05rem,2.2vw,1.8rem)/1.25 "Cormorant Garamond",Georgia,serif!important}
     .brand-lotus{display:block!important;width:100%!important;height:120px!important;max-height:120px!important;object-fit:contain!important;object-position:center!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;mix-blend-mode:multiply}
     .site-nav{
       position:sticky!important;top:0!important;z-index:60!important;
       display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:nowrap!important;
       gap:7px!important;margin:0!important;padding:9px clamp(10px,3vw,38px)!important;
-      border:0!important;border-bottom:1px solid #b8d9f3!important;border-radius:0!important;
-      background:linear-gradient(110deg,#e4f2ff,#fafdff,#dceeff)!important;
-      box-shadow:0 5px 16px rgba(24,78,139,.08)!important;overflow-x:auto!important;white-space:nowrap!important
+      border:0!important;border-bottom:1px solid var(--site-border)!important;border-radius:0!important;
+      background:linear-gradient(110deg,var(--site-soft),var(--site-card),var(--site-accent))!important;
+      box-shadow:0 5px 16px rgba(111,83,130,.09)!important;overflow-x:auto!important;white-space:nowrap!important
     }
     .site-nav a{
       flex:none!important;padding:9px clamp(10px,1.5vw,20px)!important;
-      border:1px solid rgba(92,157,212,.18)!important;border-radius:999px!important;
-      background:#eaf6ff!important;color:#123b83!important;text-decoration:none!important;
+      border:1px solid var(--site-border)!important;border-radius:999px!important;
+      background:linear-gradient(125deg,var(--site-card),var(--site-soft))!important;color:var(--site-text)!important;text-decoration:none!important;
       font:600 15px/1.2 "Cormorant Garamond",Georgia,serif!important;
-      box-shadow:0 2px 7px rgba(27,88,153,.08)!important;transition:background .18s,transform .18s!important
+      box-shadow:0 2px 7px rgba(111,83,130,.08)!important;transition:background .18s,transform .18s!important
     }
-    .site-nav a.active,.site-nav a:hover,.site-nav a:focus-visible{background:#3295dc!important;color:#fff!important;border-color:#3295dc!important;transform:translateY(-1px)!important}
+    .site-nav a.active,.site-nav a:hover,.site-nav a:focus-visible{background:linear-gradient(125deg,var(--site-accent),var(--site-text))!important;color:#fff!important;border-color:var(--site-accent)!important;transform:translateY(-1px)!important}
     .hero-main{
       position:relative!important;isolation:isolate!important;overflow:hidden!important;
       max-width:none!important;margin:0!important;padding:0!important;min-height:360px!important;
-      background:linear-gradient(180deg,#cfeaff 0%,#eaf6ff 54%,#d6edff 100%)!important;
-      border-bottom:1px solid #bddcf5!important;text-align:center!important
+      background:linear-gradient(180deg,var(--site-accent),var(--site-soft) 54%,var(--site-bg))!important;
+      border-bottom:1px solid var(--site-border)!important;text-align:center!important
     }
-    .hero-main:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 8% 88%,rgba(255,255,255,.95),transparent 30%),radial-gradient(ellipse at 95% 15%,rgba(255,255,255,.8),transparent 30%),linear-gradient(180deg,#cfeaff 0%,#eaf6ff 54%,#d6edff 100%)}
+    .hero-main:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 8% 88%,rgba(255,255,255,.95),transparent 30%),radial-gradient(ellipse at 95% 15%,rgba(255,255,255,.8),transparent 30%),linear-gradient(180deg,var(--site-accent),var(--site-soft) 54%,var(--site-bg))}
     .hero-content{display:grid!important;grid-template-columns:minmax(0,1fr)!important;align-items:center!important;max-width:1120px!important;min-height:360px!important;margin:0 auto!important;padding:clamp(38px,6vw,72px) 22px!important}
     .hero-copy{width:100%!important;max-width:900px!important;margin:0 auto!important;text-align:center!important}
-    .hero-quote{max-width:900px!important;margin:0 auto!important;color:#10377f!important;font:700 clamp(2.5rem,6vw,4.4rem)/1.12 "Cormorant Garamond",Georgia,serif!important;letter-spacing:.01em!important}
-    .quote-underline{width:112px!important;height:3px!important;margin:18px auto!important;border-radius:4px!important;background:linear-gradient(90deg,#7fc3f1,#1c78c6)!important}
-    .hero-description{max-width:850px!important;margin:14px auto 24px!important;color:#244d91!important;font:500 clamp(1.15rem,2.2vw,1.65rem)/1.5 "Cormorant Garamond",Georgia,serif!important;text-align:center!important}
-    .hero-learn{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;margin:0!important;padding:13px 30px!important;border:1px solid #8fc4ed!important;border-radius:999px!important;background:linear-gradient(120deg,#d9efff,#a9d8f7)!important;color:#10377f!important;text-decoration:none!important;font:700 1.08rem "DM Sans",sans-serif!important;box-shadow:0 4px 12px rgba(24,90,153,.12)!important}
-    .intro-restore{max-width:1040px!important;margin:28px auto!important;padding:20px 26px!important;border:1px solid #c5def3!important;border-radius:22px!important;background:linear-gradient(120deg,#d9efff,#edf7ff)!important;color:#45658f!important;text-align:center!important;box-shadow:0 6px 18px rgba(25,77,132,.06)!important}
+    .hero-quote{max-width:900px!important;margin:0 auto!important;color:var(--site-text)!important;font:700 clamp(2.5rem,6vw,4.4rem)/1.12 "Cormorant Garamond",Georgia,serif!important;letter-spacing:.01em!important}
+    .quote-underline{width:112px!important;height:3px!important;margin:18px auto!important;border-radius:4px!important;background:linear-gradient(90deg,var(--site-accent),var(--site-text))!important}
+    .hero-description{max-width:850px!important;margin:14px auto 24px!important;color:var(--site-muted)!important;font:500 clamp(1.15rem,2.2vw,1.65rem)/1.5 "Cormorant Garamond",Georgia,serif!important;text-align:center!important}
+    .hero-learn{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;margin:0!important;padding:13px 30px!important;border:1px solid var(--site-border)!important;border-radius:999px!important;background:linear-gradient(120deg,var(--site-soft),var(--site-accent))!important;color:var(--site-text)!important;text-decoration:none!important;font:700 1.08rem "DM Sans",sans-serif!important;box-shadow:0 4px 12px rgba(111,83,130,.12)!important}
+    .intro-restore{max-width:1040px!important;margin:28px auto!important;padding:20px 26px!important;border:1px solid var(--site-border)!important;border-radius:22px!important;background:linear-gradient(120deg,var(--site-soft),var(--site-card))!important;color:var(--site-muted)!important;text-align:center!important;box-shadow:0 6px 18px rgba(111,83,130,.06)!important}
     body>section:not(.hero-main){max-width:1120px!important;margin:0 auto!important;padding:clamp(30px,5vw,58px) clamp(16px,3vw,30px)!important}
-    body>section>h2{margin:0 0 12px!important;color:#123b83!important;font:700 clamp(1.7rem,3.5vw,2.2rem)/1.16 "Cormorant Garamond",Georgia,serif!important}
-    body>section>.sub{color:#45658f!important}
+    body>section>h2{margin:0 0 12px!important;color:var(--site-text)!important;font:700 clamp(1.7rem,3.5vw,2.2rem)/1.16 "Cormorant Garamond",Georgia,serif!important}
+    body>section>.sub{color:var(--site-muted)!important}
     .g{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr))!important;gap:18px!important;margin:22px 0!important}
     .c,.box,.duo-card,.spaces-card,.color-system{
-      background:linear-gradient(145deg,#fafdff,#f1f8ff)!important;
-      color:#10377f!important;border:1px solid #c5def3!important;border-radius:22px!important;
-      box-shadow:0 8px 24px rgba(25,77,132,.07)!important
+      background:linear-gradient(145deg,var(--site-card),var(--site-soft))!important;
+      color:var(--site-text)!important;border:1px solid var(--site-border)!important;border-radius:22px!important;
+      box-shadow:0 8px 24px rgba(111,83,130,.07)!important
     }
     .c{padding:clamp(18px,2.5vw,26px)!important;transition:transform .18s,box-shadow .18s!important}
-    .c:hover{transform:translateY(-3px)!important;box-shadow:0 12px 28px rgba(25,77,132,.12)!important}
-    .c b{display:block;color:#123b83!important;font:700 1.2rem "Cormorant Garamond",Georgia,serif!important}
-    .c span,.spaces-card p,.duo-card p,.space-item span,.duo-item span{color:#45658f!important}
+    .c:hover{transform:translateY(-3px)!important;box-shadow:0 12px 28px rgba(111,83,130,.12)!important}
+    .c b{display:block;color:var(--site-text)!important;font:700 1.2rem "Cormorant Garamond",Georgia,serif!important}
+    .c span,.spaces-card p,.duo-card p,.space-item span,.duo-item span{color:var(--site-muted)!important}
     .box{padding:clamp(20px,3vw,30px)!important}
     .duo,.spaces{max-width:1040px!important;margin:28px auto!important;padding:0 clamp(14px,3vw,24px)!important}
     .duo-card,.spaces-card{padding:clamp(20px,3vw,30px)!important;text-align:center!important}
-    .duo-card h2,.spaces-card h2{color:#123b83!important;font:700 clamp(1.7rem,3.5vw,2.2rem) "Cormorant Garamond",Georgia,serif!important}
+    .duo-card h2,.spaces-card h2{color:var(--site-text)!important;font:700 clamp(1.7rem,3.5vw,2.2rem) "Cormorant Garamond",Georgia,serif!important}
     .duo-list,.spaces-list{display:flex!important;flex-direction:column!important;gap:16px!important}
-    .duo-item,.space-item{display:flex!important;flex-direction:column!important;align-items:center!important;gap:7px!important;padding:16px!important;border:1px solid #d5e8f7!important;border-radius:17px!important;background:#fff!important}
-    .duo-item b,.space-item b{color:#123b83!important;font:700 20px "Cormorant Garamond",Georgia,serif!important}
-    .duo-item span,.space-item span{max-width:650px!important;color:#45658f!important}
+    .duo-item,.space-item{display:flex!important;flex-direction:column!important;align-items:center!important;gap:7px!important;padding:16px!important;border:1px solid var(--site-border)!important;border-radius:17px!important;background:var(--site-card)!important}
+    .duo-item b,.space-item b{color:var(--site-text)!important;font:700 20px "Cormorant Garamond",Georgia,serif!important}
+    .duo-item span,.space-item span{max-width:650px!important;color:var(--site-muted)!important}
     .btn,.duo-btn,.space-btn,.hero-learn,.actions button{
-      background:linear-gradient(120deg,#d9efff,#a9d8f7)!important;color:#10377f!important;
-      border:1px solid #8fc4ed!important;border-radius:999px!important;
-      box-shadow:0 4px 12px rgba(24,90,153,.12)!important
+      background:linear-gradient(120deg,var(--site-soft),var(--site-accent))!important;color:var(--site-text)!important;
+      border:1px solid var(--site-border)!important;border-radius:999px!important;
+      box-shadow:0 4px 12px rgba(111,83,130,.12)!important
     }
-    input,textarea,select,.field input{background:#fff!important;color:#10377f!important;border:1px solid #bfdcf3!important;border-radius:12px!important}
-    footer{background:linear-gradient(110deg,#e3f2ff,#f7fbff,#dceeff)!important;border-top:1px solid #bfdcf3!important;color:#45658f!important}
-    footer a{color:#123b83!important}
+    input,textarea,select,.field input{background:var(--site-card)!important;color:var(--site-text)!important;border:1px solid var(--site-border)!important;border-radius:12px!important}
+    footer{background:linear-gradient(110deg,var(--site-soft),var(--site-card),var(--site-accent))!important;border-top:1px solid var(--site-border)!important;color:var(--site-muted)!important}
+    footer a{color:var(--site-text)!important}
     @media(max-width:760px){
       .brand-header{grid-template-columns:86px minmax(0,1fr)!important;min-height:0!important;padding:9px 12px!important;gap:10px!important}
       .brand-mark{height:82px!important;max-height:82px!important}
@@ -300,8 +300,92 @@
       body>section:not(.hero-main){padding:30px 14px!important}
       .c{padding:17px!important}
     }
-
-  `;
+    /* En-tête : logo et identité BLEU PRO côte à côte, centrés */
+    .brand-header{
+      grid-template-columns:minmax(100px,150px) minmax(0,1fr) minmax(100px,160px)!important;
+      align-items:center!important;
+    }
+    .brand-mark{
+      width:100%!important;height:120px!important;max-height:120px!important;
+      display:flex!important;align-items:center!important;justify-content:center!important;
+    }
+    .brand-mark img{
+      width:100%!important;height:100%!important;max-width:145px!important;max-height:120px!important;
+      object-fit:contain!important;
+    }
+    .brand-heading{
+      display:flex!important;flex-direction:column!important;align-items:center!important;
+      justify-content:center!important;text-align:center!important;align-self:center!important;
+    }
+    .brand-heading h1,.brand-heading p{text-align:center!important}
+    @media(max-width:760px){
+      .brand-header{
+        grid-template-columns:76px minmax(0,1fr)!important;
+        align-items:center!important;gap:12px!important;
+      }
+      .brand-mark{height:76px!important;max-height:76px!important}
+      .brand-mark img{max-width:76px!important;max-height:76px!important}
+      .brand-heading{
+        align-items:center!important;justify-content:center!important;text-align:center!important;
+      }
+      .brand-heading h1{font-size:clamp(1.55rem,6.8vw,2.2rem)!important}
+      .brand-heading p{font-size:clamp(.85rem,3.8vw,1.05rem)!important;text-align:center!important}
+    }
+    /* Barre de navigation : reprendre précisément le bleu clair de Guérisseur de l’Âme. */
+    .site-nav{
+      display:flex!important;align-items:center!important;justify-content:space-around!important;
+      gap:6px!important;margin:12px clamp(14px,3.5vw,52px)!important;padding:8px!important;
+      border:1px solid #a8d1fa!important;border-radius:999px!important;
+      background:linear-gradient(135deg,#d9edff,#c2e0ff)!important;
+      box-shadow:0 6px 18px rgba(32,105,182,.12)!important;
+      overflow-x:auto!important;white-space:nowrap!important;
+    }
+    .site-nav a{
+      flex:none!important;padding:10px clamp(12px,2vw,26px)!important;
+      border:0!important;border-radius:999px!important;background:transparent!important;
+      color:#143d78!important;text-decoration:none!important;
+      font:500 clamp(1rem,1.8vw,1.45rem) "Cormorant Garamond",Georgia,serif!important;
+      box-shadow:none!important;transform:none!important;
+    }
+    .site-nav a.active{
+      background:#258fe0!important;color:#fff!important;
+      box-shadow:0 4px 12px rgba(24,113,193,.2)!important;
+    }
+    .site-nav a:hover,.site-nav a:focus-visible{
+      background:#eaf5ff!important;color:#143d78!important;
+      border-color:transparent!important;transform:none!important;
+    }
+    .site-nav a[href="#gda"],.site-nav a[data-music-open]{display:none!important}
+    @media(max-width:760px){
+      .site-nav{justify-content:flex-start!important;margin:8px 10px!important;padding:7px!important;gap:4px!important}
+      .site-nav a{font-size:14px!important;padding:8px 13px!important}
+    } 
+    /* En-tête BLEU PRO : identité réunie immédiatement à droite du logo. */
+    .brand-header{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(100px,160px)!important;align-items:center!important;gap:clamp(14px,3vw,30px)!important}
+    .brand-identity{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:clamp(14px,2.5vw,28px)!important;min-width:0!important}
+    .brand-mark{flex:0 0 clamp(100px,12vw,145px)!important;width:clamp(100px,12vw,145px)!important;height:120px!important;max-height:120px!important}
+    .brand-mark img{width:100%!important;height:100%!important;max-width:145px!important;max-height:120px!important;object-fit:contain!important}
+    .brand-heading{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;text-align:left!important;min-width:0!important}
+    .brand-heading h1,.brand-heading p{text-align:left!important}
+    .brand-lotus{width:100%!important;max-width:160px!important;height:100px!important;object-fit:contain!important}
+    /* Navigation principale : mêmes bleus que Guérisseur de l’Âme. */
+    body > nav.site-nav{display:flex!important;align-items:center!important;justify-content:space-around!important;gap:6px!important;margin:12px clamp(14px,3.5vw,52px)!important;padding:8px!important;border:1px solid #a8d1fa!important;border-radius:999px!important;background:linear-gradient(135deg,#d9edff,#c2e0ff)!important;box-shadow:0 6px 18px rgba(32,105,182,.12)!important;overflow-x:auto!important;white-space:nowrap!important}
+    body > nav.site-nav a{flex:none!important;padding:10px clamp(12px,2vw,26px)!important;border:0!important;border-radius:999px!important;background:transparent!important;color:#143d78!important;text-decoration:none!important;font:500 clamp(1rem,1.8vw,1.45rem) "Cormorant Garamond",Georgia,serif!important;box-shadow:none!important;transform:none!important}
+    body > nav.site-nav a.active{background:#258fe0!important;color:#fff!important;box-shadow:0 4px 12px rgba(24,113,193,.2)!important}
+    body > nav.site-nav a:hover,body > nav.site-nav a:focus-visible{background:#eaf5ff!important;color:#143d78!important;border-color:transparent!important}
+    @media(max-width:760px){
+      .brand-header{grid-template-columns:minmax(0,1fr)!important;gap:0!important;padding:9px 12px!important}
+      .brand-identity{gap:12px!important}
+      .brand-mark{flex:0 0 76px!important;width:76px!important;height:76px!important;max-height:76px!important}
+      .brand-mark img{max-width:76px!important;max-height:76px!important}
+      .brand-heading{align-items:flex-start!important;text-align:left!important}
+      .brand-heading h1{font-size:clamp(1.55rem,6.8vw,2.2rem)!important}
+      .brand-heading p{font-size:clamp(.85rem,3.8vw,1.05rem)!important;text-align:left!important}
+      .brand-lotus{display:none!important}
+      body > nav.site-nav{justify-content:flex-start!important;margin:8px 10px!important;padding:7px!important;gap:4px!important}
+      body > nav.site-nav a{font-size:14px!important;padding:8px 13px!important}
+    }
+`;
   function applyTheme(id){
     var p=palettes.find(function(x){return x.id===id;})||palettes[0];
     current=p.id;var root=document.documentElement;
