@@ -206,7 +206,7 @@
     #pastel-theme-toggle:hover{transform:translateY(-2px)}
     @media(max-width:520px){#pastel-theme-toggle{right:78px;bottom:82px;width:52px;height:52px}}
 
-    /* BLEU PRO — accueil et navigation en harmonie rose poudré / lavande */
+    /* BLEU PRO — accueil et navigation harmonisés dans les bleus de la marque */
     body{background:linear-gradient(180deg,var(--site-soft),var(--site-card) 48%,var(--site-bg))!important;color:var(--site-text)!important}
     .brand-header{
       position:relative!important;top:auto!important;z-index:10!important;
