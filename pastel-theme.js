@@ -343,20 +343,26 @@
     .hero-main{background:linear-gradient(180deg,#d9edff 0%,#f4faff 54%,#e4f2ff 100%)!important}
     .hero-main:before{background:radial-gradient(ellipse at 8% 88%,rgba(255,255,255,.95),transparent 30%),radial-gradient(ellipse at 95% 15%,rgba(255,255,255,.8),transparent 30%),linear-gradient(180deg,#d9edff 0%,#f4faff 54%,#e4f2ff 100%)!important}
     @media(max-width:760px){
-      .brand-header{grid-template-columns:78px minmax(0,1fr)!important;min-height:0!important;padding:9px 12px!important;gap:10px!important}
+      .brand-header{grid-template-columns:78px minmax(0,1fr) 78px!important;min-height:0!important;padding:9px 12px!important;gap:10px!important}
       .brand-mark{grid-column:1!important;grid-row:1!important;width:78px!important;height:78px!important;max-height:78px!important}
       .brand-mark img{max-width:78px!important;max-height:78px!important}
       .brand-header .brand-mark img.bp-brand-logo{width:78px!important;height:78px!important;max-width:78px!important;max-height:78px!important}
-      .brand-heading{grid-column:2!important;grid-row:1!important;align-items:flex-start!important;text-align:left!important}
-      .brand-heading h1,.brand-heading p{text-align:left!important}
-      .brand-heading h1{font-size:clamp(1.55rem,6.8vw,2.25rem)!important}
-      .brand-heading p{font-size:clamp(.85rem,3.8vw,1.05rem)!important}
+      .brand-heading{grid-column:2!important;grid-row:1!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+      .brand-heading h1,.brand-heading p{text-align:center!important}
+      .brand-heading h1{font-size:clamp(1.45rem,6vw,2.15rem)!important}
+      .brand-heading p{font-size:clamp(.78rem,3.2vw,.98rem)!important}
       .brand-lotus{display:none!important}
       body>nav.site-nav{justify-content:flex-start!important;padding:8px 10px!important;gap:6px!important}
       body>nav.site-nav a{font-size:13px!important;padding:8px 12px!important}
     }
+    .account-fab{left:18px!important;right:auto!important;bottom:18px!important;z-index:11002!important}
+    #pastel-theme-toggle{right:88px!important;bottom:18px!important;background:#123b83!important;color:#fff!important;border:2px solid #fff!important}
+    @media(max-width:520px){.account-fab{left:12px!important;bottom:16px!important;padding:11px 14px!important}#pastel-theme-toggle{right:76px!important;bottom:16px!important;width:50px!important;height:50px!important}}
 
   `;
+  var floatingLayout=document.createElement("style");
+  floatingLayout.textContent=".account-fab{left:18px!important;right:auto!important;bottom:18px!important;z-index:11002!important}#pastel-theme-toggle{right:88px!important;bottom:18px!important;background:#123b83!important;color:#fff!important;border:2px solid #fff!important}@media(max-width:520px){.account-fab{left:12px!important;right:auto!important;bottom:16px!important;padding:11px 14px!important}#pastel-theme-toggle{right:76px!important;bottom:16px!important;width:50px!important;height:50px!important}}";
+  document.head.appendChild(floatingLayout);
   function applyTheme(id){
     var p=palettes.find(function(x){return x.id===id;})||palettes[0];
     current=p.id;var root=document.documentElement;
