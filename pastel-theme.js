@@ -156,5 +156,77 @@
       *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
     }
   `;
+
   if(!style.parentNode)document.head.appendChild(style);
+
+  /* Même sélecteur d’ambiance que Guérisseur de l’Âme, avec le bleu BLEU PRO par défaut. */
+  var palettes=[
+    {id:"bleu",name:"Bleu d’origine",bg:"#eff7fd",card:"#ffffff",text:"#315575",muted:"#718da5",accent:"#9fc9e9",soft:"#e2f0fb",border:"#d2e5f4"},
+    {id:"corail",name:"Corail",bg:"#fff6f1",card:"#fffdfb",text:"#704b43",muted:"#a17b70",accent:"#efb19d",soft:"#fbe4da",border:"#f3ddd4"},
+    {id:"perle",name:"Gris perle",bg:"#f8f8fa",card:"#fefefe",text:"#55575f",muted:"#85878f",accent:"#dcdde3",soft:"#eeeef2",border:"#e8e8ec"},
+    {id:"rose",name:"Rose poudré",bg:"#fff8f9",card:"#fffafb",text:"#684c56",muted:"#987b85",accent:"#f0d0d9",soft:"#faeaef",border:"#f4e6eb"},
+    {id:"lavande",name:"Lavande",bg:"#faf8ff",card:"#fdfbff",text:"#594f70",muted:"#887e9e",accent:"#ddd3f1",soft:"#f1ebfa",border:"#efe9f5"},
+    {id:"menthe",name:"Menthe",bg:"#f5fcf9",card:"#fbfffd",text:"#45665a",muted:"#78978a",accent:"#d2ece0",soft:"#eaf7f1",border:"#e6f3ed"},
+    {id:"peche",name:"Pêche",bg:"#fff9f5",card:"#fffdfb",text:"#76584a",muted:"#a08070",accent:"#f7dbca",soft:"#fceee6",border:"#f6ebe4"},
+    {id:"vanille",name:"Jaune vanille",bg:"#fffdf4",card:"#fffef8",text:"#6b6245",muted:"#958a68",accent:"#f5ebc6",soft:"#faf5e1",border:"#f3eedd"}
+  ];
+  var themeKey="bleu-pro-theme-v1",current="bleu";
+  try{current=localStorage.getItem(themeKey)||"bleu";}catch(e){}
+  style.textContent += `
+    body{background:var(--site-bg)!important;color:var(--site-text)!important}
+    header,footer,.hero,.c,.box,.duo-card,.spaces-card,.color-system,.modal-card{
+      color:var(--site-text)!important;border-color:var(--site-border)!important
+    }
+    header{background:linear-gradient(105deg,var(--site-soft),var(--site-card),var(--site-soft))!important}
+    .hero{background:linear-gradient(135deg,var(--site-soft),var(--site-card),var(--site-accent))!important}
+    h1,h2,h3,.spaces-card h2,.duo-card h2,.modal h2{color:var(--site-text)!important}
+    .sub,.spaces-card p,.duo-card p,.c span,.space-item span,.duo-item span,footer{color:var(--site-muted)!important}
+    .c,.box,.duo-card,.spaces-card,.color-system{
+      background:linear-gradient(145deg,var(--site-card),var(--site-soft))!important;
+      border:1px solid var(--site-border)!important;box-shadow:0 9px 26px rgba(48,91,127,.075)!important
+    }
+    .btn,button:not(.modal-backdrop),.space-btn,.duo-btn,.actions button,.top nav a{
+      background:linear-gradient(125deg,var(--site-soft),var(--site-accent))!important;
+      color:var(--site-text)!important;border:1px solid var(--site-border)!important
+    }
+    input,textarea,select,.field input{background:var(--site-card)!important;color:var(--site-text)!important;border-color:var(--site-border)!important}
+    .account-fab{background:linear-gradient(135deg,var(--site-soft),var(--site-accent))!important;color:var(--site-text)!important;border-color:var(--site-border)!important}
+    .modal-card{background:linear-gradient(145deg,var(--site-card),var(--site-soft))!important}
+    footer{background:linear-gradient(110deg,var(--site-soft),var(--site-card),var(--site-soft))!important}
+    #pastel-theme-panel{position:fixed;right:14px;bottom:82px;z-index:11000;width:min(310px,calc(100vw - 28px));padding:14px;background:var(--site-card);color:var(--site-text);border:1px solid var(--site-border);border-radius:18px;box-shadow:0 12px 36px rgba(50,60,80,.18);font:14px/1.4 system-ui,sans-serif}
+    #pastel-theme-panel[hidden]{display:none!important}
+    #pastel-theme-panel .pt-title{font-weight:700;margin:0 0 10px;color:var(--site-text)}
+    #pastel-theme-panel .pt-colors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    #pastel-theme-panel button{display:flex;align-items:center;gap:7px;width:100%;padding:8px;border:1px solid var(--site-border)!important;border-radius:11px!important;background:var(--site-soft)!important;color:var(--site-text)!important;font:12px system-ui,sans-serif;cursor:pointer}
+    #pastel-theme-panel button[aria-pressed=true]{outline:2px solid var(--site-text);outline-offset:1px}
+    #pastel-theme-panel .pt-original{grid-column:1/-1;justify-content:center;font-weight:700}
+    #pastel-theme-panel .pt-close{float:right;width:30px;height:30px;padding:0;justify-content:center;border-radius:50%!important;font-size:19px}
+    #pastel-theme-panel i{display:block;width:19px;height:19px;flex:none;border-radius:50%;border:1px solid rgba(0,0,0,.08)}
+    #pastel-theme-toggle{position:fixed;right:88px;bottom:88px;z-index:11001;display:grid;place-items:center;width:58px;height:58px;padding:0;border:2px solid #fff!important;border-radius:50%!important;background:linear-gradient(145deg,#dceefa,#9fc9e9)!important;color:#315575!important;font-size:30px;line-height:1;box-shadow:0 7px 22px rgba(40,90,140,.22);cursor:pointer}
+    #pastel-theme-toggle:hover{transform:translateY(-2px)}
+    @media(max-width:520px){#pastel-theme-toggle{right:78px;bottom:82px;width:52px;height:52px}}
+  `;
+  function applyTheme(id){
+    var p=palettes.find(function(x){return x.id===id;})||palettes[0];
+    current=p.id;var root=document.documentElement;
+    [["--site-bg",p.bg],["--site-card",p.card],["--site-text",p.text],["--site-muted",p.muted],["--site-accent",p.accent],["--site-soft",p.soft],["--site-border",p.border],["--bg",p.bg],["--card",p.card],["--tx",p.text],["--mu",p.muted],["--bd",p.border],["--p1",p.soft],["--p2",p.soft],["--p3",p.accent],["--dk",p.text]].forEach(function(v){root.style.setProperty(v[0],v[1]);});
+    try{localStorage.setItem(themeKey,p.id);}catch(e){}
+    if(panel)panel.querySelectorAll("[data-theme]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.theme===p.id));});
+  }
+  var panel=document.getElementById("pastel-theme-panel");
+  if(!panel){
+    panel=document.createElement("aside");panel.id="pastel-theme-panel";panel.setAttribute("aria-label","Choisir une couleur");panel.hidden=true;
+    var close=document.createElement("button");close.type="button";close.className="pt-close";close.textContent="×";close.setAttribute("aria-label","Fermer les couleurs");close.addEventListener("click",function(){panel.hidden=true;});
+    var title=document.createElement("p");title.className="pt-title";title.textContent="Choisissez votre ambiance";
+    var original=document.createElement("button");original.type="button";original.className="pt-original";original.textContent="↺ Revenir au bleu d’origine";original.addEventListener("click",function(){applyTheme("bleu");});
+    panel.appendChild(close);panel.appendChild(title);panel.appendChild(original);
+    var grid=document.createElement("div");grid.className="pt-colors";
+    palettes.forEach(function(p){var b=document.createElement("button");b.type="button";b.dataset.theme=p.id;b.setAttribute("aria-label",p.name);var dot=document.createElement("i");dot.style.background=p.accent;var label=document.createElement("span");label.textContent=p.name;b.appendChild(dot);b.appendChild(label);b.addEventListener("click",function(){applyTheme(p.id);});grid.appendChild(b);});
+    panel.appendChild(grid);document.body.appendChild(panel);
+  }
+  var toggle=document.getElementById("pastel-theme-toggle");
+  if(!toggle){toggle=document.createElement("button");toggle.id="pastel-theme-toggle";toggle.type="button";toggle.textContent="🎨";toggle.setAttribute("aria-label","Ouvrir les couleurs");toggle.setAttribute("title","Changer les couleurs");document.body.appendChild(toggle);}
+  toggle.addEventListener("click",function(){panel.hidden=!panel.hidden;});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")panel.hidden=true;});
+  applyTheme(current);
 })();
