@@ -301,6 +301,58 @@
       .c{padding:17px!important}
     }
 
+
+    /* BLEU PRO — en-tête : logo à gauche, identité centrée, lotus à droite. */
+    .brand-header{
+      display:grid!important;
+      grid-template-columns:minmax(100px,160px) minmax(0,1fr) minmax(100px,160px)!important;
+      align-items:center!important;gap:clamp(12px,2.5vw,30px)!important;
+      min-height:156px!important;padding:12px clamp(16px,4vw,54px)!important;
+    }
+    .brand-mark{grid-column:1!important;grid-row:1!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:128px!important;max-height:128px!important}
+    .brand-mark img{display:block!important;width:100%!important;height:100%!important;max-width:150px!important;max-height:128px!important;object-fit:contain!important}
+    .brand-heading{grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;min-width:0!important}
+    .brand-heading h1,.brand-heading p{text-align:center!important}
+    .brand-heading h1{font-size:clamp(2rem,4.7vw,3.8rem)!important}
+    .brand-lotus{grid-column:3!important;grid-row:1!important;display:block!important;width:100%!important;max-width:155px!important;height:112px!important;object-fit:contain!important;justify-self:end!important}
+    /* Navigation : six boutons, chacun dans sa couleur pastel dédiée. */
+    body>nav.site-nav{
+      position:sticky!important;top:0!important;z-index:60!important;
+      display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:nowrap!important;
+      gap:8px!important;margin:0!important;padding:10px clamp(10px,2.5vw,34px)!important;
+      border:0!important;border-bottom:1px solid #d5e4f2!important;border-radius:0!important;
+      background:linear-gradient(110deg,#fafdff,#f3f8fd,#fafdff)!important;
+      box-shadow:0 5px 16px rgba(24,78,139,.08)!important;overflow-x:auto!important;white-space:nowrap!important
+    }
+    body>nav.site-nav a{
+      flex:none!important;padding:10px clamp(12px,1.8vw,22px)!important;
+      border:1px solid transparent!important;border-radius:999px!important;
+      text-decoration:none!important;font:600 clamp(13px,1.2vw,16px)/1.2 "Cormorant Garamond",Georgia,serif!important;
+      box-shadow:0 3px 9px rgba(40,70,100,.07)!important;transition:filter .18s,transform .18s!important
+    }
+    body>nav.site-nav a:nth-child(1){background:#d9edff!important;color:#174b78!important;border-color:#b9daf5!important}
+    body>nav.site-nav a:nth-child(2){background:#f8e1e9!important;color:#754d5d!important;border-color:#efcbd9!important}
+    body>nav.site-nav a:nth-child(3){background:#e9e1fa!important;color:#594c78!important;border-color:#d6c9ef!important}
+    body>nav.site-nav a:nth-child(4){background:#ffe5d7!important;color:#80553f!important;border-color:#f5cfb9!important}
+    body>nav.site-nav a:nth-child(5){background:#fff2c9!important;color:#75602b!important;border-color:#f0dfa5!important}
+    body>nav.site-nav a:nth-child(6){background:#dff3e7!important;color:#416b54!important;border-color:#c1e4ce!important}
+    body>nav.site-nav a:hover,body>nav.site-nav a:focus-visible{filter:brightness(.96)!important;transform:translateY(-2px)!important}
+    body>nav.site-nav a.active{outline:2px solid rgba(31,93,145,.35)!important;outline-offset:1px!important;filter:saturate(1.12)!important}
+    .hero-main{background:linear-gradient(180deg,#d9edff 0%,#f4faff 54%,#e4f2ff 100%)!important}
+    .hero-main:before{background:radial-gradient(ellipse at 8% 88%,rgba(255,255,255,.95),transparent 30%),radial-gradient(ellipse at 95% 15%,rgba(255,255,255,.8),transparent 30%),linear-gradient(180deg,#d9edff 0%,#f4faff 54%,#e4f2ff 100%)!important}
+    @media(max-width:760px){
+      .brand-header{grid-template-columns:78px minmax(0,1fr)!important;min-height:0!important;padding:9px 12px!important;gap:10px!important}
+      .brand-mark{grid-column:1!important;grid-row:1!important;width:78px!important;height:78px!important;max-height:78px!important}
+      .brand-mark img{max-width:78px!important;max-height:78px!important}
+      .brand-heading{grid-column:2!important;grid-row:1!important;align-items:flex-start!important;text-align:left!important}
+      .brand-heading h1,.brand-heading p{text-align:left!important}
+      .brand-heading h1{font-size:clamp(1.55rem,6.8vw,2.25rem)!important}
+      .brand-heading p{font-size:clamp(.85rem,3.8vw,1.05rem)!important}
+      .brand-lotus{display:none!important}
+      body>nav.site-nav{justify-content:flex-start!important;padding:8px 10px!important;gap:6px!important}
+      body>nav.site-nav a{font-size:13px!important;padding:8px 12px!important}
+    }
+
   `;
   function applyTheme(id){
     var p=palettes.find(function(x){return x.id===id;})||palettes[0];
