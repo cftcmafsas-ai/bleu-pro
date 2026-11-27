@@ -361,7 +361,7 @@
 
   `;
   var floatingLayout=document.createElement("style");
-  floatingLayout.textContent=".account-fab{left:18px!important;right:auto!important;bottom:18px!important;z-index:11002!important}#pastel-theme-toggle{right:88px!important;bottom:18px!important;background:#123b83!important;color:#fff!important;border:2px solid #fff!important}@media(max-width:520px){.account-fab{left:12px!important;right:auto!important;bottom:16px!important;padding:11px 14px!important}#pastel-theme-toggle{right:76px!important;bottom:16px!important;width:50px!important;height:50px!important}}";
+  floatingLayout.textContent=".account-fab{left:18px!important;right:auto!important;bottom:18px!important;z-index:11002!important}#pastel-theme-toggle{right:86px!important;bottom:18px!important;width:54px!important;height:54px!important;background:linear-gradient(135deg,var(--site-soft),var(--site-accent))!important;color:var(--site-text)!important;border:1px solid var(--site-border)!important;box-shadow:0 10px 28px rgba(48,91,127,.18)!important}@media(max-width:520px){.account-fab{left:12px!important;right:auto!important;bottom:16px!important;padding:11px 14px!important}#pastel-theme-toggle{right:76px!important;bottom:16px!important;width:50px!important;height:50px!important}}";
   document.head.appendChild(floatingLayout);
   function applyTheme(id){
     var p=palettes.find(function(x){return x.id===id;})||palettes[0];
