@@ -11,7 +11,8 @@
       .bp-brand-logo{width:100%!important;height:100%!important;max-width:150px!important;max-height:128px!important;object-fit:contain;border-radius:0!important;filter:drop-shadow(0 3px 6px rgba(48,91,127,.12))}
       .bp-brand-name{font-size:clamp(16px,2vw,20px);white-space:nowrap;color:var(--site-text,#315575)}
       nav a[data-music-open]{white-space:nowrap}
-      .music-float{position:fixed!important;right:20px!important;bottom:88px!important;top:auto!important;z-index:10010!important;display:grid!important;place-items:center!important;width:58px!important;height:58px!important;padding:0!important;border:2px solid #fff!important;border-radius:50%!important;background:linear-gradient(145deg,#8fc7eb,#4f9bd0)!important;color:#fff!important;font-size:30px!important;line-height:1!important;box-shadow:0 7px 22px rgba(32,115,187,.3)!important;cursor:pointer!important}
+      .music-float{position:fixed!important;right:20px!important;bottom:18px!important;top:auto!important;z-index:10010!important;display:grid!important;place-items:center!important;width:58px!important;height:58px!important;padding:0!important;border:2px solid #fff!important;border-radius:50%!important;background:linear-gradient(145deg,#8fc7eb,#4f9bd0)!important;color:#fff!important;font-size:30px!important;line-height:1!important;box-shadow:0 7px 22px rgba(32,115,187,.3)!important;cursor:pointer!important}
+      .music-float{background:#123b83!important;color:#fff!important;border:2px solid #fff!important}
       .music-float:hover{transform:translateY(-2px);filter:brightness(1.05)}
       .music-modal[hidden]{display:none!important}
       .music-modal{position:fixed!important;inset:0!important;z-index:10020!important;display:grid!important;place-items:center!important;padding:14px!important}
@@ -32,7 +33,7 @@
       .music-modal-link{display:inline-block;padding:11px 24px;border:1px solid var(--site-border,#b3d8f2);border-radius:999px;background:linear-gradient(135deg,var(--site-soft,#dceefa),var(--site-accent,#9fc9e9));color:var(--site-text,#315575);font-weight:650;text-decoration:none}
       .music-modal-link:hover{filter:brightness(.98)}
       body.music-modal-open{overflow:hidden}
-      @media(max-width:760px){.bp-brand-logo{height:78px!important;max-width:78px!important}.music-float{right:14px!important;bottom:86px!important;width:54px!important;height:54px!important}.music-modal{padding:8px!important}.music-modal-card{max-height:94dvh!important;border-radius:18px!important}.music-popup-intro{grid-template-columns:94px 1fr;gap:8px;margin:10px;padding:8px}.music-popup-intro img{width:94px;height:94px}.music-popup-intro p{font-size:1.1rem;padding:6px}.music-modal-slogan{font-size:1.05rem;margin:10px 12px 0}}
+      @media(max-width:760px){.bp-brand-logo{height:78px!important;max-width:78px!important}.music-float{right:14px!important;bottom:16px!important;width:54px!important;height:54px!important}.music-modal{padding:8px!important}.music-modal-card{max-height:94dvh!important;border-radius:18px!important}.music-popup-intro{grid-template-columns:94px 1fr;gap:8px;margin:10px;padding:8px}.music-popup-intro img{width:94px;height:94px}.music-popup-intro p{font-size:1.1rem;padding:6px}.music-modal-slogan{font-size:1.05rem;margin:10px 12px 0}}
     `;
     document.head.appendChild(widgetStyle);
 
