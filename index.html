@@ -183,7 +183,7 @@ async function openApp(){const m=document.getElementById("gmsg"),raw=document.ge
   const box=document.getElementById("appbox");box.appendChild(f);box.style.display="";document.getElementById("gate").style.display="none";m.textContent=""}catch(x){m.textContent="Ouverture impossible sur cet appareil."}}
 document.getElementById("go").onclick=openApp;document.getElementById("code").onkeydown=e=>{if(e.key==="Enter")openApp()};
 document.getElementById("close").onclick=()=>{const b=document.getElementById("appbox");b.querySelector("iframe").remove();b.style.display="none";document.getElementById("gate").style.display="";document.getElementById("code").value=""};
-</script><script src="/app.js"></script>
-<script src="/project-sites-nav.js"></script>
-<script src="/pastel-theme.js"></script>
+</script><script src="./app.js"></script>
+<script src="./project-sites-nav.js"></script>
+<script src="./pastel-theme.js"></script>
 </body></html>
