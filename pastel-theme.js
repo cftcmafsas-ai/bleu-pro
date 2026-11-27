@@ -312,6 +312,7 @@
     }
     .brand-mark{grid-column:1!important;grid-row:1!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:128px!important;max-height:128px!important}
     .brand-mark img{display:block!important;width:100%!important;height:100%!important;max-width:150px!important;max-height:128px!important;object-fit:contain!important}
+    .brand-header .brand-mark img.bp-brand-logo{width:100%!important;height:100%!important;max-width:150px!important;max-height:128px!important}
     .brand-heading{grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;min-width:0!important}
     .brand-heading h1,.brand-heading p{text-align:center!important}
     .brand-heading h1{font-size:clamp(2rem,4.7vw,3.8rem)!important}
@@ -345,6 +346,7 @@
       .brand-header{grid-template-columns:78px minmax(0,1fr)!important;min-height:0!important;padding:9px 12px!important;gap:10px!important}
       .brand-mark{grid-column:1!important;grid-row:1!important;width:78px!important;height:78px!important;max-height:78px!important}
       .brand-mark img{max-width:78px!important;max-height:78px!important}
+      .brand-header .brand-mark img.bp-brand-logo{width:78px!important;height:78px!important;max-width:78px!important;max-height:78px!important}
       .brand-heading{grid-column:2!important;grid-row:1!important;align-items:flex-start!important;text-align:left!important}
       .brand-heading h1,.brand-heading p{text-align:left!important}
       .brand-heading h1{font-size:clamp(1.55rem,6.8vw,2.25rem)!important}
