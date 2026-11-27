@@ -36,24 +36,15 @@
     `;
     document.head.appendChild(widgetStyle);
 
-    var header=document.querySelector("body>header");
+    var header=document.querySelector(".brand-header")||document.querySelector("body>header");
     var logo=header&&header.querySelector("a img");
     if(logo){
       logo.alt="Logo R — Rodolphe Torres Tirado";
       logo.classList.add("bp-brand-logo");
-      var brand=logo.parentElement;
-      brand.classList.add("bp-brand-lockup");
-      if(!brand.querySelector(".bp-brand-name")){
-        var name=document.createElement("span");
-        name.className="bp-brand-name";
-        name.textContent="BLEU PRO";
-        brand.appendChild(name);
-      }
-      fetch("./assets/reference-logo.b64").then(function(r){if(!r.ok)throw new Error("logo");return r.text();})
-        .then(function(data){logo.src="data:image/webp;base64,"+data.trim();}).catch(function(){});
+      /* Le logo fourni dans les fichiers BLEU PRO est conservé tel quel. */
     }
 
-    var nav=header&&header.querySelector("nav");
+    var nav=document.querySelector(".site-nav")||(header&&header.querySelector("nav"));
     if(nav&&!nav.querySelector("[data-music-open]")){
       var navLink=document.createElement("a");
       navLink.href="#music-modal";
