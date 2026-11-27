@@ -44,28 +44,9 @@
       /* Le logo fourni dans les fichiers BLEU PRO est conservé tel quel. */
     }
 
-    var nav=document.querySelector(".site-nav")||(header&&header.querySelector("nav"));
-    if(nav&&!nav.querySelector("[data-music-open]")){
-      var navLink=document.createElement("a");
-      navLink.href="#music-modal";
-      navLink.textContent="♫ Mon Espace Musique";
-      navLink.setAttribute("data-music-open","");
-      navLink.setAttribute("aria-haspopup","dialog");
-      navLink.setAttribute("aria-controls","music-modal");
-      navLink.setAttribute("aria-expanded","false");
-      nav.appendChild(navLink);
-    }
+    /* Le lecteur musical reste accessible via son bouton flottant, sans entrée dans le menu supérieur. */
 
-    var sites=document.querySelector("#gda .duo-list");
-    if(sites&&!sites.querySelector('[data-site="music"]')){
-      var item=document.createElement("div");
-      item.className="duo-item";
-      item.dataset.site="music";
-      var title=document.createElement("b");title.textContent="Mon Espace Musique";
-      var desc=document.createElement("span");desc.textContent="Bibliothèque, playlists, radio et lecteur YouTube.";
-      var link=document.createElement("a");link.className="duo-btn";link.href=MUSIC_URL;link.target="_blank";link.rel="noopener noreferrer";link.textContent="Accéder";
-      item.append(title,desc,link);sites.appendChild(item);
-    }
+    /* Mon Espace Musique reste accessible par le bouton flottant et sa fenêtre. */
 
     var opener=document.createElement("button");
     opener.type="button";opener.className="music-float";opener.textContent="♫";
